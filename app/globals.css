@@ -1,0 +1,223 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: #0f172a;
+  }
+  
+  .dark {
+    --background: #0f172a;
+    --foreground: #f8fafc;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+}
+
+/* 3D Glass Morphism Styles */
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  transition: all 0.3s ease;
+}
+
+/* Desktop hover effects */
+@media (min-width: 768px) {
+  .glass-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.25);
+  }
+}
+
+/* Mobile optimizations - lighter effects */
+@media (max-width: 767px) {
+  .glass-card {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.1);
+  }
+  
+  .glass-card:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 8px 0 rgba(31, 38, 135, 0.15);
+  }
+}
+
+.glass-card-dark {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.glass-button {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+/* Desktop hover */
+@media (min-width: 768px) {
+  .glass-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+  }
+}
+
+/* Mobile active state */
+@media (max-width: 767px) {
+  .glass-button {
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+  }
+  
+  .glass-button:active {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(0.95);
+  }
+}
+
+/* 3D Transform Effects */
+.card-3d {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+/* Desktop only - 3D effects can be heavy on mobile */
+@media (min-width: 768px) {
+  .card-3d:hover {
+    transform: rotateY(5deg) rotateX(5deg);
+  }
+}
+
+/* Mobile - simple scale instead of 3D */
+@media (max-width: 767px) {
+  .card-3d:active {
+    transform: scale(0.97);
+  }
+}
+
+/* Animated Gradient Background */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animated-gradient {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+/* Glow Effects */
+.glow-blue {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+}
+
+.glow-red {
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+}
+
+.glow-green {
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+}
+
+/* Floating Animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Disable heavy animations on mobile for better performance */
+@media (max-width: 767px) {
+  .float-animation {
+    animation: none;
+  }
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 767px) {
+  /* Reduce backdrop blur for better performance */
+  .glass-card,
+  .glass-button,
+  .glass-card-dark {
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+  }
+  
+  /* Simplify shadows on mobile */
+  .glass-card {
+    box-shadow: 0 2px 12px 0 rgba(31, 38, 135, 0.1) !important;
+  }
+  
+  /* Touch-friendly sizing */
+  button, a, .cursor-pointer {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Prevent text selection on touch */
+  .cursor-pointer {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    user-select: none;
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .glass-card {
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+  }
+}
+
+/* 3D Glass Sidebar - Light Pink/Blue/White */
+.sidebar-glass {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.97) 0%,
+    rgba(248, 240, 255, 0.95) 40%,
+    rgba(240, 245, 255, 0.97) 100%
+  );
+  backdrop-filter: blur(24px) saturate(1.8);
+  -webkit-backdrop-filter: blur(24px) saturate(1.8);
+  box-shadow: 
+    inset -1px 0 0 rgba(219, 39, 119, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    4px 0 24px rgba(219, 39, 119, 0.08),
+    0 0 60px rgba(59, 130, 246, 0.04);
+}
+
+@media (max-width: 767px) {
+  .sidebar-glass {
+    backdrop-filter: blur(20px) saturate(1.6);
+    -webkit-backdrop-filter: blur(20px) saturate(1.6);
+  }
+}
