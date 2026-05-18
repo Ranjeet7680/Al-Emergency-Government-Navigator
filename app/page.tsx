@@ -3,6 +3,17 @@
 import { useState, useEffect } from "react";
 import { Mic, Send, AlertTriangle, PhoneCall, FileText, Camera, MapPin, HeartPulse, ShieldAlert, Shield, Search, Bell, User, Home, BookOpen, File, Activity, Settings as SettingsIcon, ChevronRight, Stethoscope, Waves, Scale, Briefcase, Plus, Heart, Map, Globe, Eye, Lock, Zap, FileDigit, Tent, Users, UserCog, Volume2, LayoutGrid, CheckCircle, Download, CreditCard, Building, Gavel, FileCheck, FileWarning, LineChart, Info, Bot, Database, Calendar, Clock, X, Edit, Trash2, Save, Upload, Filter, Star, TrendingUp, Award, Target, Wifi, WifiOff, Battery, BatteryCharging, Navigation, Radio, Siren, Ambulance, Hospital, Pill, Thermometer, Droplet, Wind, Cloud, Sun, Moon, Sunrise, Sunset, CloudRain, CloudSnow, CloudLightning, Umbrella, AlertCircle, CheckCircle2, XCircle, HelpCircle, MessageSquare, MessageCircle, Phone, Mail, Video, Share2, Link, Copy, Printer, ExternalLink, ArrowRight, ArrowLeft, ArrowUp, ArrowDown, ChevronLeft, ChevronDown, ChevronUp, MoreVertical, MoreHorizontal, Menu, Maximize, Minimize, RefreshCw, RotateCw, ZoomIn, ZoomOut, Layers, Package, Clipboard, BookMarked, Bookmark, Tag, Hash, AtSign, DollarSign, Percent, Slash, Code, Terminal, GitBranch, Github, Twitter, Facebook, Instagram, Linkedin, Youtube, Chrome, Smartphone, Tablet, Laptop, Monitor, Tv, Watch, Headphones, Speaker, Mic2, MicOff, Volume, Volume1, VolumeX, Play, Pause, SkipBack, SkipForward, Repeat, Shuffle, List, Grid, Columns, Rows, Square, Circle, Triangle, Hexagon, Octagon, Pentagon, Diamond, Image as ImageIcon, Film, Music, FileVideo, FileAudio, FileImage, FilePlus, FileMinus, FileX, Folder, FolderPlus, FolderMinus, FolderOpen, Archive, Inbox, Send as SendIcon, Trash, Flag, Bookmark as BookmarkIcon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import CitizenLoginModal from "./features/CitizenLogin";
+import AccessibilityPanel from "./features/AccessibilityPanel";
+import ProfileSetupWizard from "./features/ProfileSetup";
+import EmergencyPlansAdvanced from "./features/EmergencyPlans";
+import DocumentsVaultAdvanced from "./features/DocumentsVault";
+import EmergencyRadar from "./features/EmergencyRadar";
+import MedicalProfileAdvanced from "./features/MedicalProfile";
+import EmergencyContactsAdvanced from "./features/EmergencyContacts";
+import AdminDashboardAdvanced from "./features/AdminDashboard";
+import VolunteerPortalAdvanced from "./features/VolunteerPortal";
+import AntiGravityEffect from "./features/AntiGravityEffect";
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState("Welcome");
@@ -17,6 +28,7 @@ export default function Dashboard() {
   const [showLangMenu, setShowLangMenu] = useState(false);
   const [isSignedIn, setIsSignedIn] = useState(true);
   const [showSignInModal, setShowSignInModal] = useState(false);
+  const [showAccessibilityPanel, setShowAccessibilityPanel] = useState(false);
   const [userName, setUserName] = useState("Citizen User");
   const [userEmail, setUserEmail] = useState("citizen@govassist.in");
 
@@ -41,28 +53,32 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="flex h-screen bg-[#f8fafc] text-slate-900 font-sans overflow-hidden">
+    <div className="flex h-screen bg-gradient-to-br from-cyan-50 via-fuchsia-50/30 to-violet-50 text-slate-900 font-sans overflow-hidden">
+      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20 mix-blend-screen pointer-events-none"></div>
+
+      <AntiGravityEffect />
+
       {/* Sidebar - Fixed Position */}
-      <aside className={`fixed inset-y-0 left-0 z-50 ${isSidebarCollapsed ? 'w-[72px]' : 'w-[280px]'} sidebar-glass text-slate-700 border-r border-pink-100/60 flex flex-col justify-between hidden md:flex transition-all duration-300 ease-in-out [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] overflow-y-auto overflow-x-visible`}>
+      <aside className={`fixed inset-y-0 left-0 z-50 ${isSidebarCollapsed ? 'w-[72px]' : 'w-[280px]'} bg-white/80 backdrop-blur-xl text-slate-700 border-r border-fuchsia-100/60 flex flex-col justify-between hidden md:flex transition-all duration-300 ease-in-out [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] overflow-y-auto overflow-x-visible shadow-lg shadow-fuchsia-100/20`}>
         <div className="w-full">
-          <div className="p-4 flex items-center justify-between h-20 border-b border-pink-100/40">
+          <div className="p-4 flex items-center justify-between h-20 border-b border-fuchsia-100/40">
             {!isSidebarCollapsed && (
               <div className="animate-in fade-in duration-300 whitespace-nowrap flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl overflow-hidden border-2 border-blue-200 shadow-lg shadow-blue-200/40 shrink-0 bg-white p-0.5">
+                <div className="w-10 h-10 rounded-xl overflow-hidden border-2 border-fuchsia-300 shadow-lg shadow-fuchsia-200/40 shrink-0 bg-white p-0.5">
                   <img src="/api/logo" alt="GovAssist AI" className="w-full h-full object-contain" />
                 </div>
                 <div>
-                  <h1 className="text-lg font-extrabold text-slate-800 tracking-tight">GovAssist<span className="text-blue-600"> AI</span></h1>
-                  <p className="text-[9px] text-pink-400 mt-0 uppercase tracking-[0.2em] font-bold">Emergency OS</p>
+                  <h1 className="text-lg font-extrabold text-slate-800 tracking-tight">GovAssist<span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 to-cyan-500"> AI</span></h1>
+                  <p className="text-[9px] text-fuchsia-400 mt-0 uppercase tracking-[0.2em] font-bold">Emergency OS</p>
                 </div>
               </div>
             )}
-            <button onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)} className="text-slate-400 hover:text-blue-600 transition cursor-pointer p-2 rounded-lg hover:bg-blue-50 mx-auto">
+            <button onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)} className="text-slate-400 hover:text-fuchsia-600 transition cursor-pointer p-2 rounded-lg hover:bg-fuchsia-50 mx-auto">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
             </button>
           </div>
           <nav className="px-3 space-y-0.5 mt-4 mb-6 w-full">
-            {!isSidebarCollapsed && <div className="text-[10px] font-bold text-pink-400 uppercase tracking-[0.15em] mb-2 px-3">Primary</div>}
+            {!isSidebarCollapsed && <div className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.15em] mb-2 px-3">Primary</div>}
             <NavItem icon={<LayoutGrid size={20} />} label="Welcome" active={activeTab === "Welcome"} onClick={() => setActiveTab("Welcome")} collapsed={isSidebarCollapsed} />
             <NavItem icon={<Home size={20} />} label="Dashboard" active={activeTab === "Home"} onClick={() => setActiveTab("Home")} collapsed={isSidebarCollapsed} />
             <NavItem icon={<Zap size={20} />} label="AI Navigator" active={activeTab === "AI Navigator"} onClick={() => setActiveTab("AI Navigator")} collapsed={isSidebarCollapsed} />
@@ -70,8 +86,8 @@ export default function Dashboard() {
             <NavItem icon={<Map size={20} />} label="Live Map" active={activeTab === "Live Map"} onClick={() => setActiveTab("Live Map")} collapsed={isSidebarCollapsed} />
             
             {!isSidebarCollapsed ? (
-              <div className="text-[10px] font-bold text-pink-400 uppercase tracking-[0.15em] mt-5 mb-2 px-3">Resources</div>
-            ) : <div className="mt-5 border-t border-pink-100 pt-2 mx-2"></div>}
+              <div className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.15em] mt-5 mb-2 px-3">Resources</div>
+            ) : <div className="mt-5 border-t border-slate-100 pt-2 mx-2"></div>}
             <NavItem icon={<BookOpen size={20} />} label="Emergency Plans" active={activeTab === "Emergency Plans"} onClick={() => setActiveTab("Emergency Plans")} collapsed={isSidebarCollapsed} />
             <NavItem icon={<FileDigit size={20} />} label="Documents Vault" active={activeTab === "Documents Vault"} onClick={() => setActiveTab("Documents Vault")} collapsed={isSidebarCollapsed} />
             <NavItem icon={<Activity size={20} />} label="Official Alerts" active={activeTab === "Official Alerts"} onClick={() => setActiveTab("Official Alerts")} badge="5" collapsed={isSidebarCollapsed} />
@@ -81,29 +97,39 @@ export default function Dashboard() {
             <NavItem icon={<Tent size={20} />} label="Disaster Relief" active={activeTab === "Disaster Relief"} onClick={() => setActiveTab("Disaster Relief")} collapsed={isSidebarCollapsed} />
             
             {!isSidebarCollapsed ? (
-              <div className="text-[10px] font-bold text-pink-400 uppercase tracking-[0.15em] mt-5 mb-2 px-3">Personal</div>
-            ) : <div className="mt-5 border-t border-pink-100 pt-2 mx-2"></div>}
+              <div className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.15em] mt-5 mb-2 px-3">Personal</div>
+            ) : <div className="mt-5 border-t border-slate-100 pt-2 mx-2"></div>}
             <NavItem icon={<User size={20} />} label="My Profile" active={activeTab === "My Profile"} onClick={() => setActiveTab("My Profile")} collapsed={isSidebarCollapsed} />
             <NavItem icon={<Heart size={20} />} label="Medical Profile" active={activeTab === "Medical Profile"} onClick={() => setActiveTab("Medical Profile")} collapsed={isSidebarCollapsed} />
             <NavItem icon={<Users size={20} />} label="Emergency Contacts" active={activeTab === "Emergency Contacts"} onClick={() => setActiveTab("Emergency Contacts")} collapsed={isSidebarCollapsed} />
             
             {!isSidebarCollapsed ? (
-              <div className="text-[10px] font-bold text-pink-400 uppercase tracking-[0.15em] mt-5 mb-2 px-3">System</div>
-            ) : <div className="mt-5 border-t border-pink-100 pt-2 mx-2"></div>}
+              <div className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.15em] mt-5 mb-2 px-3">System</div>
+            ) : <div className="mt-5 border-t border-slate-100 pt-2 mx-2"></div>}
             <NavItem icon={<SettingsIcon size={20} />} label="Settings" active={activeTab === "Settings"} onClick={() => setActiveTab("Settings")} collapsed={isSidebarCollapsed} />
             <NavItem icon={<UserCog size={20} />} label="Admin Dashboard" active={activeTab === "Admin Dashboard"} onClick={() => setActiveTab("Admin Dashboard")} collapsed={isSidebarCollapsed} />
             <NavItem icon={<Shield size={20} />} label="Volunteer Portal" active={activeTab === "Volunteer Portal"} onClick={() => setActiveTab("Volunteer Portal")} collapsed={isSidebarCollapsed} />
           </nav>
         </div>
-        <div className="p-4 sticky bottom-0 z-10 border-t border-pink-100/60 bg-white/80 backdrop-blur-md">
+        <div className="p-4 sticky bottom-0 z-10 border-t border-slate-100/60 bg-white/80 backdrop-blur-md flex flex-col gap-4">
           <button 
             onClick={() => setActiveTab("SOS Center")}
-            className={`${isSidebarCollapsed ? 'w-12 h-12 rounded-full mx-auto p-0 justify-center' : 'w-full py-3 px-4 rounded-xl justify-center gap-2'} bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white font-bold flex items-center transition-all shadow-lg shadow-red-200 animate-pulse group relative`}
+            className={`${isSidebarCollapsed ? 'w-12 h-12 rounded-full mx-auto p-0 justify-center' : 'w-full py-3 px-4 rounded-xl justify-center gap-2'} bg-gradient-to-r from-rose-500 to-fuchsia-500 hover:from-rose-600 hover:to-fuchsia-600 text-white font-bold flex items-center transition-all shadow-lg shadow-rose-300/50 animate-pulse group relative`}
             title={isSidebarCollapsed ? "EMERGENCY 112" : undefined}
           >
             <PhoneCall size={isSidebarCollapsed ? 20 : 18} />
             {!isSidebarCollapsed && <span>EMERGENCY 112</span>}
           </button>
+
+          {/* Developer Credit */}
+          {!isSidebarCollapsed && (
+            <div className="flex items-center justify-center gap-2 opacity-80 hover:opacity-100 transition-opacity">
+              <div className="w-5 h-5 rounded overflow-hidden border border-slate-200 shadow-sm shrink-0 bg-white p-0.5">
+                <img src="/api/team-logo" alt="Innovator Team" className="w-full h-full object-contain" />
+              </div>
+                  <p className="text-[9px] text-slate-500 font-bold">Developed by <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 via-rose-500 to-cyan-500 font-black">INNOVATOR TEAM</span></p>
+            </div>
+          )}
         </div>
       </aside>
 
@@ -117,7 +143,7 @@ export default function Dashboard() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[60] md:hidden"
+              className="fixed inset-0 bg-gradient-to-br from-fuchsia-500/20 to-cyan-500/20 backdrop-blur-sm z-[60] md:hidden"
             />
             
             {/* Mobile Menu */}
@@ -126,33 +152,33 @@ export default function Dashboard() {
               animate={{ x: 0 }}
               exit={{ x: -280 }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed inset-y-0 left-0 z-[70] w-[280px] sidebar-glass text-slate-700 border-r border-pink-100/60 flex flex-col justify-between md:hidden overflow-y-auto"
+              className="fixed inset-y-0 left-0 z-[70] w-[280px] bg-white/95 backdrop-blur-xl text-slate-700 border-r border-fuchsia-100/60 flex flex-col justify-between md:hidden overflow-y-auto shadow-xl"
             >
               <div className="w-full">
-                <div className="p-4 flex items-center justify-between h-20 border-b border-pink-100/40">
+                <div className="p-4 flex items-center justify-between h-20 border-b border-slate-100/40">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-xl overflow-hidden border-2 border-blue-200 shadow-lg shadow-blue-200/40 shrink-0 bg-white p-0.5">
                       <img src="/api/logo" alt="GovAssist AI" className="w-full h-full object-contain" />
                     </div>
                     <div>
                       <h1 className="text-lg font-extrabold text-slate-800 tracking-tight">GovAssist<span className="text-blue-600"> AI</span></h1>
-                      <p className="text-[9px] text-pink-400 mt-0 uppercase tracking-[0.2em] font-bold">Emergency OS</p>
+                      <p className="text-[9px] text-slate-400 mt-0 uppercase tracking-[0.2em] font-bold">Emergency OS</p>
                     </div>
                   </div>
-                  <button onClick={() => setIsMobileMenuOpen(false)} className="text-slate-400 hover:text-red-500 transition cursor-pointer p-2 rounded-lg hover:bg-pink-50">
+                  <button onClick={() => setIsMobileMenuOpen(false)} className="text-slate-400 hover:text-red-500 transition cursor-pointer p-2 rounded-lg hover:bg-slate-50">
                     <X size={24} />
                   </button>
                 </div>
                 
                 <nav className="px-3 space-y-0.5 mt-4 mb-6 w-full">
-                  <div className="text-[10px] font-bold text-pink-400 uppercase tracking-[0.15em] mb-2 px-3">Primary</div>
+                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.15em] mb-2 px-3">Primary</div>
                   <NavItem icon={<LayoutGrid size={20} />} label="Welcome" active={activeTab === "Welcome"} onClick={() => { setActiveTab("Welcome"); setIsMobileMenuOpen(false); }} collapsed={false} />
                   <NavItem icon={<Home size={20} />} label="Dashboard" active={activeTab === "Home"} onClick={() => { setActiveTab("Home"); setIsMobileMenuOpen(false); }} collapsed={false} />
                   <NavItem icon={<Zap size={20} />} label="AI Navigator" active={activeTab === "AI Navigator"} onClick={() => { setActiveTab("AI Navigator"); setIsMobileMenuOpen(false); }} collapsed={false} />
                   <NavItem icon={<AlertTriangle size={20} />} label="SOS Center" active={activeTab === "SOS Center"} onClick={() => { setActiveTab("SOS Center"); setIsMobileMenuOpen(false); }} isAlert badge="2" collapsed={false} />
                   <NavItem icon={<Map size={20} />} label="Live Map" active={activeTab === "Live Map"} onClick={() => { setActiveTab("Live Map"); setIsMobileMenuOpen(false); }} collapsed={false} />
                   
-                  <div className="text-[10px] font-bold text-pink-400 uppercase tracking-[0.15em] mt-5 mb-2 px-3">Resources</div>
+                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.15em] mt-5 mb-2 px-3">Resources</div>
                   <NavItem icon={<BookOpen size={20} />} label="Emergency Plans" active={activeTab === "Emergency Plans"} onClick={() => { setActiveTab("Emergency Plans"); setIsMobileMenuOpen(false); }} collapsed={false} />
                   <NavItem icon={<FileDigit size={20} />} label="Documents Vault" active={activeTab === "Documents Vault"} onClick={() => { setActiveTab("Documents Vault"); setIsMobileMenuOpen(false); }} collapsed={false} />
                   <NavItem icon={<Activity size={20} />} label="Official Alerts" active={activeTab === "Official Alerts"} onClick={() => { setActiveTab("Official Alerts"); setIsMobileMenuOpen(false); }} badge="5" collapsed={false} />
@@ -161,26 +187,34 @@ export default function Dashboard() {
                   <NavItem icon={<Scale size={20} />} label="Legal Aid" active={activeTab === "Legal Aid"} onClick={() => { setActiveTab("Legal Aid"); setIsMobileMenuOpen(false); }} collapsed={false} />
                   <NavItem icon={<Tent size={20} />} label="Disaster Relief" active={activeTab === "Disaster Relief"} onClick={() => { setActiveTab("Disaster Relief"); setIsMobileMenuOpen(false); }} collapsed={false} />
                   
-                  <div className="text-[10px] font-bold text-pink-400 uppercase tracking-[0.15em] mt-5 mb-2 px-3">Personal</div>
+                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.15em] mt-5 mb-2 px-3">Personal</div>
                   <NavItem icon={<User size={20} />} label="My Profile" active={activeTab === "My Profile"} onClick={() => { setActiveTab("My Profile"); setIsMobileMenuOpen(false); }} collapsed={false} />
                   <NavItem icon={<Heart size={20} />} label="Medical Profile" active={activeTab === "Medical Profile"} onClick={() => { setActiveTab("Medical Profile"); setIsMobileMenuOpen(false); }} collapsed={false} />
                   <NavItem icon={<Users size={20} />} label="Emergency Contacts" active={activeTab === "Emergency Contacts"} onClick={() => { setActiveTab("Emergency Contacts"); setIsMobileMenuOpen(false); }} collapsed={false} />
                   
-                  <div className="text-[10px] font-bold text-pink-400 uppercase tracking-[0.15em] mt-5 mb-2 px-3">System</div>
+                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.15em] mt-5 mb-2 px-3">System</div>
                   <NavItem icon={<SettingsIcon size={20} />} label="Settings" active={activeTab === "Settings"} onClick={() => { setActiveTab("Settings"); setIsMobileMenuOpen(false); }} collapsed={false} />
                   <NavItem icon={<UserCog size={20} />} label="Admin Dashboard" active={activeTab === "Admin Dashboard"} onClick={() => { setActiveTab("Admin Dashboard"); setIsMobileMenuOpen(false); }} collapsed={false} />
                   <NavItem icon={<Shield size={20} />} label="Volunteer Portal" active={activeTab === "Volunteer Portal"} onClick={() => { setActiveTab("Volunteer Portal"); setIsMobileMenuOpen(false); }} collapsed={false} />
                 </nav>
               </div>
               
-              <div className="p-4 sticky bottom-0 z-10 border-t border-pink-100/60 bg-white/80 backdrop-blur-md">
+              <div className="p-4 sticky bottom-0 z-10 border-t border-slate-100/60 bg-white/80 backdrop-blur-md flex flex-col gap-4">
                 <button 
                   onClick={() => { setActiveTab("SOS Center"); setIsMobileMenuOpen(false); }}
-                  className="w-full py-3 px-4 rounded-xl justify-center gap-2 bg-gradient-to-r from-red-500 to-pink-500 active:from-red-600 active:to-pink-600 text-white font-bold flex items-center transition-all shadow-lg shadow-red-200 animate-pulse"
+                  className="w-full py-3 px-4 rounded-xl justify-center gap-2 bg-gradient-to-r from-red-500 to-slate-500 active:from-red-600 active:to-slate-600 text-white font-bold flex items-center transition-all shadow-lg shadow-red-200 animate-pulse"
                 >
                   <PhoneCall size={18} />
                   <span>EMERGENCY 112</span>
                 </button>
+
+                {/* Developer Credit */}
+                <div className="flex items-center justify-center gap-2 opacity-80 hover:opacity-100 transition-opacity pb-2">
+                  <div className="w-5 h-5 rounded overflow-hidden border border-slate-200 shadow-sm shrink-0 bg-white p-0.5">
+                    <img src="/api/team-logo" alt="Innovator Team" className="w-full h-full object-contain" />
+                  </div>
+              <p className="text-[9px] text-slate-500 font-bold">Developed by <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 via-rose-500 to-cyan-500 font-black">INNOVATOR TEAM</span></p>
+                </div>
               </div>
             </motion.aside>
           </>
@@ -193,12 +227,12 @@ export default function Dashboard() {
         {/* Critical Alert Banner (Sticky Top) */}
         <AnimatePresence>
           {showCriticalAlert && (
-            <motion.div 
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0, padding: 0 }}
-              className="bg-red-600 text-white px-4 py-2.5 text-xs md:text-sm font-bold flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 z-40 relative shadow-md shrink-0 overflow-hidden"
-            >
+        <motion.div 
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0, padding: 0 }}
+            className="bg-gradient-to-r from-rose-600 via-red-500 to-orange-500 text-white px-4 py-2.5 text-xs md:text-sm font-bold flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 z-40 relative shadow-lg shadow-rose-200/50 shrink-0 overflow-hidden"
+          >
               <div className="flex items-center gap-2">
                 <span className="bg-white text-red-600 px-2 py-0.5 rounded uppercase tracking-wider text-[10px] animate-pulse">Critical</span>
                 <span>Flash Flood Warning issued for coastal sectors.</span>
@@ -214,7 +248,7 @@ export default function Dashboard() {
         </AnimatePresence>
 
         {/* Topbar */}
-        <header className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-4 md:px-6 z-[45] shrink-0 shadow-sm relative">
+        <header className="h-16 bg-white/90 backdrop-blur-xl border-b border-fuchsia-100 flex items-center justify-between px-4 md:px-6 z-[45] shrink-0 shadow-sm shadow-fuchsia-100/30 relative">
           
           {/* Left: Mobile Menu + Branding */}
           <div className="flex items-center gap-2 md:gap-3 w-1/4">
@@ -232,7 +266,7 @@ export default function Dashboard() {
               </div>
               <div className="flex flex-col">
                 <span className="text-xs md:text-sm font-extrabold text-slate-800 leading-tight">GovAssist <span className="text-blue-600">AI</span></span>
-                <span className="text-[8px] md:text-[9px] text-pink-400 font-bold uppercase tracking-wider leading-tight">Emergency OS</span>
+                <span className="text-[8px] md:text-[9px] text-slate-400 font-bold uppercase tracking-wider leading-tight">Emergency OS</span>
               </div>
             </div>
           </div>
@@ -249,7 +283,7 @@ export default function Dashboard() {
                 onChange={(e) => setTopSearchQuery(e.target.value)}
                 onFocus={() => setIsTopSearchOpen(true)}
                 placeholder="Ask AI..." 
-                className="w-full bg-slate-100/80 hover:bg-slate-100 focus:bg-white border-2 border-transparent focus:border-blue-400 focus:ring-2 md:focus:ring-4 focus:ring-blue-100/50 text-slate-900 rounded-full py-2 md:py-2.5 pl-9 md:pl-12 pr-10 md:pr-12 outline-none transition-all text-xs md:text-sm font-medium shadow-inner"
+                className="w-full bg-gradient-to-r from-fuchsia-50/80 to-cyan-50/80 hover:from-fuchsia-100/80 hover:to-cyan-100/80 focus:bg-white border-2 border-transparent focus:border-fuchsia-400 focus:ring-2 md:focus:ring-4 focus:ring-fuchsia-100/50 text-slate-900 rounded-full py-2 md:py-2.5 pl-9 md:pl-12 pr-10 md:pr-12 outline-none transition-all text-xs md:text-sm font-medium shadow-inner"
               />
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 md:pr-3">
                 <button onClick={() => setActiveTab("AI Navigator")} className="p-1 md:p-1.5 text-slate-400 hover:text-blue-600 transition cursor-pointer bg-white rounded-full shadow-sm border border-slate-100"><Mic size={12} className="md:w-[14px] md:h-[14px]"/></button>
@@ -312,16 +346,16 @@ export default function Dashboard() {
               {showLangMenu && (
                 <>
                   <div className="fixed inset-0 z-40" onClick={() => setShowLangMenu(false)}></div>
-                  <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-xl shadow-2xl border border-pink-100 overflow-hidden text-sm z-50 animate-in fade-in slide-in-from-top-2 p-1.5">
-                    <div className="px-3 py-2 text-[10px] font-bold text-pink-400 uppercase tracking-wider">Select Language</div>
+                  <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden text-sm z-50 animate-in fade-in slide-in-from-top-2 p-1.5">
+                    <div className="px-3 py-2 text-[10px] font-bold text-slate-400 uppercase tracking-wider">Select Language</div>
                     {languages.map((lang) => (
                       <button 
                         key={lang.code}
                         onClick={() => { setCurrentLang(lang.code); setShowLangMenu(false); }}
                         className={`w-full text-left px-3 py-2 rounded-lg flex items-center justify-between cursor-pointer transition ${
                           currentLang === lang.code 
-                            ? 'bg-gradient-to-r from-blue-50 to-pink-50 text-blue-600 font-bold' 
-                            : 'text-slate-600 hover:bg-pink-50/50'
+                            ? 'bg-gradient-to-r from-blue-50 to-slate-50 text-blue-600 font-bold' 
+                            : 'text-slate-600 hover:bg-slate-50/50'
                         }`}
                       >
                         <span className="flex items-center gap-2">
@@ -344,12 +378,12 @@ export default function Dashboard() {
 
             {/* User / Profile */}
             <div className="relative group">
-              <button onClick={() => isSignedIn ? undefined : setShowSignInModal(true)} className="w-8 h-8 md:w-9 md:h-9 rounded-full overflow-hidden border-2 border-pink-200 hover:border-blue-400 transition cursor-pointer shadow-sm" title="My Profile">
+              <button onClick={() => isSignedIn ? undefined : setShowSignInModal(true)} className="w-8 h-8 md:w-9 md:h-9 rounded-full overflow-hidden border-2 border-slate-200 hover:border-blue-400 transition cursor-pointer shadow-sm" title="My Profile">
                 <img src="/api/avatar" alt="User" className="w-full h-full object-cover" />
               </button>
               {isSignedIn && (
-                <div className="hidden group-hover:block absolute right-0 top-full mt-2 w-56 bg-white rounded-xl shadow-2xl border border-pink-100 overflow-hidden text-sm z-50 animate-in fade-in slide-in-from-top-2 p-2">
-                  <div className="flex items-center gap-3 px-3 py-3 border-b border-pink-50 mb-1">
+                <div className="hidden group-hover:block absolute right-0 top-full mt-2 w-56 bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden text-sm z-50 animate-in fade-in slide-in-from-top-2 p-2">
+                  <div className="flex items-center gap-3 px-3 py-3 border-b border-slate-50 mb-1">
                     <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-blue-200 shadow-sm shrink-0">
                       <img src="/api/avatar" alt="" className="w-full h-full object-cover" />
                     </div>
@@ -364,7 +398,7 @@ export default function Dashboard() {
                   <button onClick={() => setShowUserAgreement(true)} className="w-full text-left px-3 py-2 hover:bg-blue-50 rounded-lg text-slate-700 font-medium flex items-center justify-between cursor-pointer text-xs">
                     <span className="flex items-center gap-2"><Info size={14} /> User Agreement</span>
                   </button>
-                  <div className="h-px bg-pink-100 my-1"></div>
+                  <div className="h-px bg-slate-100 my-1"></div>
                   <button onClick={() => { setIsSignedIn(false); setActiveTab("Welcome"); }} className="w-full text-left px-3 py-2 hover:bg-red-50 rounded-lg text-red-500 font-bold cursor-pointer text-xs flex items-center gap-2"><X size={14} /> Sign Out</button>
                 </div>
               )}
@@ -372,14 +406,14 @@ export default function Dashboard() {
           </div>
         </header>
 
-        {isTopSearchOpen && <div className="fixed inset-0 z-[44] bg-slate-900/20 backdrop-blur-sm transition-all cursor-default" onClick={() => setIsTopSearchOpen(false)}></div>}
+        {isTopSearchOpen && <div className="fixed inset-0 z-[44] bg-gradient-to-br from-fuchsia-500/10 to-cyan-500/10 backdrop-blur-sm transition-all cursor-default" onClick={() => setIsTopSearchOpen(false)}></div>}
 
         {/* Emergency Banner */}
         <AnimatePresence>
           <motion.div 
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
-            className="bg-red-600 text-white text-sm font-bold py-2 px-8 flex items-center gap-2 justify-center shadow-md relative z-30"
+            className="bg-gradient-to-r from-rose-600 via-red-500 to-orange-500 text-white text-sm font-bold py-2 px-8 flex items-center gap-2 justify-center shadow-lg shadow-rose-200/50 relative z-30"
           >
             <AlertTriangle size={16} className="animate-bounce" />
             CRITICAL ALERT: FLASH FLOOD WARNING FOR DOWNTOWN AREA. EVACUATION ROUTES ACTIVE.
@@ -387,25 +421,25 @@ export default function Dashboard() {
           </motion.div>
         </AnimatePresence>
 
-        <div className={`flex-1 overflow-y-auto ${activeTab === "Welcome" ? "p-0" : "p-4 md:p-8"} space-y-8 pb-24 relative`} style={{ background: 'linear-gradient(180deg, #f0f4ff 0%, #f8fafc 100%)' }}>
+        <div className={`flex-1 overflow-y-auto ${activeTab === "Welcome" ? "p-0" : "p-4 md:p-8"} space-y-8 pb-24 relative`} style={{ background: 'linear-gradient(180deg, #faf5ff 0%, #f0fdfa 50%, #f0f4ff 100%)' }}>
           
-          {activeTab === "Welcome" && <WelcomeTab setActiveTab={setActiveTab} />}
+          {activeTab === "Welcome" && <WelcomeTab setActiveTab={setActiveTab} setShowAccessibilityPanel={setShowAccessibilityPanel} />}
           {activeTab === "Home" && <HomeTab setActiveTab={setActiveTab} />}
           {activeTab === "AI Navigator" && <AINavigatorTab />}
           {activeTab === "SOS Center" && <SOSCenterTab />}
-          {activeTab === "Live Map" && <LiveMapTab />}
+          {activeTab === "Live Map" && <EmergencyRadar />}
           {activeTab === "Settings" && <SettingsTab />}
-          {activeTab === "Emergency Plans" && <EmergencyPlansTab />}
-          {activeTab === "Documents Vault" && <DocumentsVaultTab />}
+          {activeTab === "Emergency Plans" && <EmergencyPlansAdvanced />}
+          {activeTab === "Documents Vault" && <DocumentsVaultAdvanced />}
           {activeTab === "Official Alerts" && <OfficialAlertsTab />}
           {activeTab === "Agency Directory" && <AgencyDirectoryTab />}
           {activeTab === "Legal Aid" && <LegalAidTab />}
           {activeTab === "Disaster Relief" && <DisasterReliefTab />}
-          {activeTab === "Admin Dashboard" && <AdminDashboardTab />}
-          {activeTab === "Volunteer Portal" && <VolunteerPortalTab />}
-          {activeTab === "Medical Profile" && <MedicalProfileTab />}
-          {activeTab === "My Profile" && <MyProfileTab />}
-          {activeTab === "Emergency Contacts" && <EmergencyContactsTab />}
+          {activeTab === "Admin Dashboard" && <AdminDashboardAdvanced />}
+          {activeTab === "Volunteer Portal" && <VolunteerPortalAdvanced />}
+          {activeTab === "Medical Profile" && <MedicalProfileAdvanced />}
+          {activeTab === "My Profile" && <ProfileSetupWizard />}
+          {activeTab === "Emergency Contacts" && <EmergencyContactsAdvanced />}
           {activeTab === "Calendar" && <CalendarTab />}
 
         </div>
@@ -414,31 +448,21 @@ export default function Dashboard() {
         {activeTab !== "AI Navigator" && (
           <button 
             onClick={() => setActiveTab("AI Navigator")}
-            className="fixed bottom-14 md:bottom-8 right-4 md:right-8 bg-gradient-to-br from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white p-3.5 md:p-4 rounded-full shadow-xl shadow-blue-300/40 flex items-center justify-center transition-all hover:scale-110 group z-50 cursor-pointer border-2 border-white/50"
+            className="fixed bottom-14 md:bottom-8 right-4 md:right-8 bg-gradient-to-br from-fuchsia-500 to-cyan-500 hover:from-fuchsia-600 hover:to-cyan-600 text-white p-3.5 md:p-4 rounded-full shadow-xl shadow-fuchsia-300/50 flex items-center justify-center transition-all hover:scale-110 group z-50 cursor-pointer border-2 border-white/50"
           >
             <Zap size={20} className="md:w-6 md:h-6" />
-            <span className="absolute right-full mr-4 bg-blue-600 text-white text-xs font-bold px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-lg pointer-events-none hidden md:block">
+            <span className="absolute right-full mr-4 bg-gradient-to-r from-fuchsia-600 to-cyan-600 text-white text-xs font-bold px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-lg pointer-events-none hidden md:block">
               Talk to AI Assistant
             </span>
           </button>
         )}
-
-        {/* Developer Credit - Separate bottom bar */}
-        <div className="fixed bottom-0 left-0 right-0 md:left-auto md:right-0 md:bottom-0 z-30 pointer-events-none" style={{ marginLeft: 'inherit' }}>
-          <div className="pointer-events-auto bg-gradient-to-r from-white/95 via-pink-50/95 to-blue-50/95 backdrop-blur-xl px-4 py-2 md:py-2.5 flex items-center justify-center md:justify-end gap-2.5 border-t border-pink-200/40 shadow-[0_-2px_10px_rgba(219,39,119,0.06)]">
-            <div className="w-6 h-6 md:w-7 md:h-7 rounded-lg overflow-hidden border border-pink-200 shadow-sm shrink-0 bg-white p-0.5">
-              <img src="/api/team-logo" alt="Innovator Team" className="w-full h-full object-contain" />
-            </div>
-            <p className="text-[10px] md:text-xs text-slate-500 font-medium">Developed by <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-red-500 to-blue-600 font-extrabold">INNOVATOR TEAM</span></p>
-          </div>
-        </div>
 
         {/* User Agreement Modal */}
         <AnimatePresence>
           {showUserAgreement && (
             <motion.div 
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[100] bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4"
+              className="fixed inset-0 z-[100] bg-gradient-to-br from-fuchsia-500/20 to-violet-500/20 backdrop-blur-sm flex items-center justify-center p-4"
               onClick={() => setShowUserAgreement(false)}
             >
               <motion.div 
@@ -446,7 +470,7 @@ export default function Dashboard() {
                 className="bg-white rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden"
                 onClick={e => e.stopPropagation()}
               >
-                <div className="bg-slate-900 p-6 text-white text-center relative">
+                <div className="bg-gradient-to-r from-fuchsia-500 via-violet-500 to-cyan-500 p-6 text-white text-center relative">
                   <Shield size={36} className="mx-auto mb-3 text-blue-400" />
                   <h2 className="text-xl font-extrabold tracking-tight">GovAssist AI User Agreement</h2>
                   <div className="text-xs text-blue-300 mt-1 uppercase tracking-widest">Citizen Privacy Policy</div>
@@ -481,70 +505,29 @@ export default function Dashboard() {
         </AnimatePresence>
 
         {/* Sign In Modal */}
-        <AnimatePresence>
-          {showSignInModal && (
-            <motion.div 
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[100] bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4"
-              onClick={() => setShowSignInModal(false)}
-            >
-              <motion.div 
-                initial={{ y: 20, scale: 0.95 }} animate={{ y: 0, scale: 1 }} exit={{ y: 20, scale: 0.95 }}
-                className="bg-white rounded-2xl shadow-2xl max-w-sm w-full overflow-hidden"
-                onClick={e => e.stopPropagation()}
-              >
-                <div className="bg-gradient-to-r from-blue-600 to-pink-500 p-6 text-white text-center relative">
-                  <div className="w-16 h-16 rounded-xl overflow-hidden bg-white mx-auto mb-3 p-1 shadow-lg">
-                    <img src="/api/logo" alt="GovAssist AI" className="w-full h-full object-contain" />
-                  </div>
-                  <h2 className="text-xl font-extrabold tracking-tight">Welcome Back</h2>
-                  <div className="text-xs text-white/80 mt-1">Sign in to GovAssist AI</div>
-                </div>
-                <form className="p-6 space-y-4" onSubmit={(e) => { 
-                  e.preventDefault(); 
-                  const form = e.target as HTMLFormElement;
-                  const name = (form.elements.namedItem('name') as HTMLInputElement)?.value || 'Citizen User';
-                  const email = (form.elements.namedItem('email') as HTMLInputElement)?.value || 'citizen@govassist.in';
-                  setUserName(name);
-                  setUserEmail(email);
-                  setIsSignedIn(true); 
-                  setShowSignInModal(false); 
-                }}>
-                  <div>
-                    <label className="text-xs font-bold text-slate-600 uppercase tracking-wider">Full Name</label>
-                    <input name="name" type="text" defaultValue="Citizen User" className="w-full mt-1 px-4 py-2.5 rounded-xl border border-pink-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-100 outline-none text-sm transition" placeholder="Enter your full name" />
-                  </div>
-                  <div>
-                    <label className="text-xs font-bold text-slate-600 uppercase tracking-wider">Email / Aadhaar</label>
-                    <input name="email" type="text" defaultValue="citizen@govassist.in" className="w-full mt-1 px-4 py-2.5 rounded-xl border border-pink-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-100 outline-none text-sm transition" placeholder="Email or Aadhaar number" />
-                  </div>
-                  <div>
-                    <label className="text-xs font-bold text-slate-600 uppercase tracking-wider">Password</label>
-                    <input type="password" defaultValue="password" className="w-full mt-1 px-4 py-2.5 rounded-xl border border-pink-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-100 outline-none text-sm transition" placeholder="••••••••" />
-                  </div>
-                  <button type="submit" className="w-full py-3 rounded-xl bg-gradient-to-r from-blue-600 to-pink-500 text-white font-bold hover:from-blue-700 hover:to-pink-600 transition shadow-lg shadow-blue-200 cursor-pointer flex items-center justify-center gap-2">
-                    <Shield size={18} /> Sign In Securely
-                  </button>
-                  <div className="flex items-center gap-3 text-xs text-slate-400">
-                    <div className="flex-1 h-px bg-slate-200"></div>
-                    or
-                    <div className="flex-1 h-px bg-slate-200"></div>
-                  </div>
-                  <button type="button" onClick={() => { setIsSignedIn(true); setShowSignInModal(false); }} className="w-full py-2.5 rounded-xl border-2 border-pink-200 text-pink-600 font-bold hover:bg-pink-50 transition cursor-pointer text-sm">
-                    Continue as Guest
-                  </button>
-                </form>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <CitizenLoginModal 
+          isOpen={showSignInModal} 
+          onClose={() => setShowSignInModal(false)}
+          onLogin={(name, email) => {
+            setUserName(name);
+            setUserEmail(email);
+            setIsSignedIn(true);
+            setShowSignInModal(false);
+          }}
+        />
+
+        {/* Accessibility Panel */}
+        <AccessibilityPanel 
+          isOpen={showAccessibilityPanel} 
+          onClose={() => setShowAccessibilityPanel(false)} 
+        />
 
         {/* Not Signed In Banner */}
         {!isSignedIn && (
-          <div className="fixed top-0 left-0 right-0 z-[90] bg-gradient-to-r from-pink-500 to-blue-600 text-white py-2 px-4 flex items-center justify-center gap-3 shadow-lg">
+          <div className="fixed top-0 left-0 right-0 z-[90] bg-gradient-to-r from-fuchsia-500 to-cyan-500 text-white py-2 px-4 flex items-center justify-center gap-3 shadow-lg shadow-fuchsia-200/50">
             <Lock size={14} />
             <span className="text-xs md:text-sm font-bold">You're not signed in. Some features may be limited.</span>
-            <button onClick={() => setShowSignInModal(true)} className="px-3 py-1 bg-white text-pink-600 font-bold rounded-lg text-xs hover:bg-pink-50 transition cursor-pointer">Sign In</button>
+            <button onClick={() => setShowSignInModal(true)} className="px-3 py-1 bg-white text-slate-600 font-bold rounded-lg text-xs hover:bg-slate-50 transition cursor-pointer">Sign In</button>
           </div>
         )}
       </main>
@@ -572,20 +555,20 @@ function AppLoader() {
   }, []);
 
   return (
-    <div className="fixed inset-0 bg-gradient-to-br from-white via-pink-50 to-blue-50 text-slate-800 flex flex-col items-center justify-center z-[100] overflow-hidden">
+    <div className="fixed inset-0 bg-gradient-to-br from-white via-blue-50 to-pink-50 text-slate-800 flex flex-col items-center justify-center z-[100] overflow-hidden">
       {/* Pulse rings */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <div className="w-[500px] h-[500px] border border-pink-200/40 rounded-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-[ping_3s_linear_infinite]"></div>
-        <div className="w-[300px] h-[300px] border border-blue-200/50 rounded-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-[ping_2s_linear_infinite]"></div>
-        <div className="w-[100px] h-[100px] border border-pink-300/60 rounded-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="w-[500px] h-[500px] border border-blue-200/40 rounded-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-[ping_3s_linear_infinite]"></div>
+        <div className="w-[300px] h-[300px] border border-pink-300/50 rounded-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-[ping_2s_linear_infinite]"></div>
+        <div className="w-[100px] h-[100px] border border-emerald-300/60 rounded-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
       </div>
       
       <div className="relative z-10 flex flex-col items-center">
-        <div className="w-24 h-24 rounded-2xl mb-6 shadow-xl shadow-blue-200/50 overflow-hidden border-2 border-pink-200 bg-white p-1">
+        <div className="w-24 h-24 rounded-2xl mb-6 shadow-xl shadow-blue-200/50 overflow-hidden border-2 border-white bg-white p-1">
           <img src="/api/logo" alt="GovAssist AI" className="w-full h-full object-contain animate-pulse" />
         </div>
-        <h1 className="text-3xl font-extrabold tracking-tight mb-2">GovAssist<span className="text-blue-600"> AI</span></h1>
-        <p className="text-lg font-medium text-slate-400 mb-12 text-center px-4">Initializing Emergency Response Network...</p>
+        <h1 className="text-3xl font-extrabold tracking-tight mb-2 text-slate-900">GovAssist<span className="text-blue-600"> AI</span></h1>
+        <p className="text-lg font-medium text-slate-500 mb-12 text-center px-4">Initializing Emergency Response Network...</p>
         
         <div className="h-6 overflow-hidden mb-6 w-full flex justify-center">
           <AnimatePresence mode="wait">
@@ -595,47 +578,47 @@ function AppLoader() {
               animate={{ y: 0, opacity: 1 }} 
               exit={{ y: -20, opacity: 0 }} 
               transition={{ duration: 0.2 }}
-              className="text-sm text-pink-500 font-mono tracking-wider uppercase text-center"
+              className="text-sm text-pink-500 font-bold font-mono tracking-wider uppercase text-center"
             >
               {loadingTexts[textIndex]}
             </motion.div>
           </AnimatePresence>
         </div>
 
-        <div className="w-64 h-1.5 bg-pink-100 rounded-full overflow-hidden relative">
+        <div className="w-64 h-1.5 bg-slate-200 rounded-full overflow-hidden relative">
           <motion.div 
             initial={{ width: "0%" }} 
             animate={{ width: "100%" }} 
             transition={{ duration: 4.5, ease: "easeInOut" }}
-            className="absolute top-0 left-0 bottom-0 bg-gradient-to-r from-pink-500 via-red-400 to-blue-500 rounded-full shadow-[0_0_10px_rgba(236,72,153,0.5)]"
+            className="absolute top-0 left-0 bottom-0 bg-gradient-to-r from-blue-500 via-emerald-400 to-pink-500 rounded-full shadow-[0_0_15px_rgba(59,130,246,0.4)]"
           ></motion.div>
         </div>
         <div className="mt-3 text-xs font-mono text-slate-400">SYS_BOOT_v1.0.4 // ENCRYPTED</div>
       </div>
 
       <div className="absolute bottom-10 flex flex-col items-center gap-3 w-full">
-        <div className="text-slate-400 text-sm font-medium tracking-widest uppercase text-center">
+        <div className="text-slate-500 text-sm font-medium tracking-widest uppercase text-center">
           &ldquo;Smarter Government. Stronger Citizens.&rdquo;
         </div>
-        <div className="flex items-center gap-2.5 bg-white/60 backdrop-blur-md px-5 py-2.5 rounded-full border border-pink-200/50 hover:border-blue-300 transition-colors shadow-sm">
-          <div className="w-7 h-7 rounded-lg overflow-hidden border border-pink-200 shadow-sm bg-white shrink-0 p-0.5">
+        <div className="flex items-center gap-2.5 bg-white/60 backdrop-blur-md px-5 py-2.5 rounded-full border border-blue-100 hover:border-pink-300 transition-colors shadow-sm">
+          <div className="w-7 h-7 rounded-lg overflow-hidden border border-slate-100 shadow-sm bg-white shrink-0 p-0.5">
             <img src="/api/team-logo" alt="IT" className="w-full h-full object-contain" />
           </div>
-          <span className="text-xs font-bold text-slate-500">Developed by <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-red-500 to-blue-600 font-extrabold">INNOVATOR TEAM</span></span>
+          <span className="text-xs font-bold text-slate-600">Developed by <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-600 via-rose-500 to-cyan-500 font-extrabold">INNOVATOR TEAM</span></span>
         </div>
       </div>
     </div>
   )
 }
 
-function WelcomeTab({ setActiveTab }: any) {
+function WelcomeTab({ setActiveTab, setShowAccessibilityPanel }: any) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
   const slides = [
-    { title: "National Emergency Response Mission", desc: "AI-powered citizen emergency assistance for faster response and seamless service delivery.", color: "from-blue-950 via-blue-900 to-indigo-900", action: "SOS Center", badge: "PM Initiative", pmImage: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Prime_Minister_of_India_Narendra_Modi.jpg" },
-    { title: "National Flood Alert", desc: "Heavy rainfall expected in coastal regions. NDRF deployed across 12 districts.", color: "from-slate-900 via-blue-900 to-blue-800", action: "Live Map", badge: "Active Alert" },
-    { title: "Cyber Fraud Awareness", desc: "Never share your OTP. Dial 1930 immediately if defrauded.", color: "from-slate-950 via-slate-900 to-slate-800", action: "Legal Aid", badge: "Security" },
-    { title: "Women Safety Initiative", desc: "112 India app integrates direct tracking for immediate response.", color: "from-pink-950 via-pink-900 to-rose-800", action: "SOS Center", badge: "Safety" },
+    { title: "National Emergency Response Mission", desc: "AI-powered citizen emergency assistance for faster response and seamless service delivery.", color: "from-fuchsia-700 via-rose-600 to-orange-500", action: "SOS Center", badge: "PM Initiative", pmImage: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Prime_Minister_of_India_Narendra_Modi.jpg" },
+    { title: "National Flood Alert", desc: "Heavy rainfall expected in coastal regions. NDRF deployed across 12 districts.", color: "from-cyan-700 via-blue-600 to-indigo-700", action: "Live Map", badge: "Active Alert" },
+    { title: "Cyber Fraud Awareness", desc: "Never share your OTP. Dial 1930 immediately if defrauded.", color: "from-violet-800 via-purple-700 to-fuchsia-600", action: "Legal Aid", badge: "Security" },
+    { title: "Women Safety Initiative", desc: "112 India app integrates direct tracking for immediate response.", color: "from-rose-700 via-pink-600 to-fuchsia-500", action: "SOS Center", badge: "Safety" },
   ];
 
   useEffect(() => {
@@ -654,7 +637,7 @@ function WelcomeTab({ setActiveTab }: any) {
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="w-full">
       {/* GOI Header Strip */}
       <div className="bg-white border-b border-slate-200 px-6 md:px-12 py-3 flex flex-col md:flex-row justify-between items-center text-sm gap-3">
-        <div className="flex items-center gap-3 font-bold text-slate-800">
+              <div className="flex items-center gap-1.5 font-bold text-slate-800">
           <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" className="h-10" alt="Emblem"/>
           <div>
             <div className="leading-tight text-lg tracking-tight">GOVERNMENT OF INDIA</div>
@@ -662,17 +645,20 @@ function WelcomeTab({ setActiveTab }: any) {
           </div>
         </div>
         <div className="flex flex-wrap items-center justify-center gap-3 md:gap-5 text-slate-600 font-medium">
-          <button className="hover:text-blue-600 flex items-center gap-1.5 transition cursor-pointer"><Eye size={16}/> Accessibility</button>
+          <button onClick={() => setShowAccessibilityPanel(true)} className="hover:text-blue-600 flex items-center gap-1.5 transition cursor-pointer"><Eye size={16}/> Accessibility</button>
           <button className="hover:text-blue-600 flex items-center gap-1.5 transition cursor-pointer"><Globe size={16}/> English / हिन्दी</button>
           <button onClick={() => setActiveTab("My Profile")} className="hover:text-blue-600 flex items-center gap-1.5 transition cursor-pointer"><User size={16}/> Citizen Login</button>
-          <button onClick={() => setActiveTab("Home")} className="bg-red-600 text-white font-bold px-5 py-2 rounded-lg hover:bg-red-700 flex items-center gap-1.5 shadow-sm transition cursor-pointer"><Lock size={16}/> Guest Access</button>
+          <button className="bg-red-600 text-white font-bold px-5 py-2 rounded-lg hover:bg-red-700 flex items-center gap-1.5 shadow-sm transition cursor-pointer"><Lock size={16}/> Guest Access</button>
         </div>
       </div>
 
-      {/* Full-Width Hero */}
-      <div className={`relative w-full min-h-[420px] md:h-[480px] bg-gradient-to-r ${slides[currentSlide].color} overflow-hidden flex flex-col md:flex-row transition-colors duration-700`}>
+      {/* Improved Full-Width Carousel Hero */}
+      <div className={`relative w-full min-h-[420px] md:h-[480px] bg-gradient-to-r ${slides[currentSlide].color} overflow-hidden flex flex-col md:flex-row transition-colors duration-700 shadow-inner`}>
+        {/* Subtle Background Pattern */}
+        <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] mix-blend-overlay pointer-events-none"></div>
+        
         {/* Floating Live Alert Badge */}
-        <div className="absolute top-6 right-6 md:right-12 z-30 bg-red-600/90 backdrop-blur-md text-white px-4 py-2 rounded-xl shadow-lg flex items-center gap-2 animate-pulse border border-red-400/50">
+        <div className="absolute top-6 right-6 md:right-12 z-30 bg-red-600/90 backdrop-blur-md text-white px-4 py-2 rounded-xl shadow-lg flex items-center gap-2 animate-pulse border border-red-400/50 hover:scale-105 transition cursor-pointer">
           <span className="w-2.5 h-2.5 rounded-full bg-white animate-ping absolute left-3"></span>
           <span className="w-2.5 h-2.5 rounded-full bg-white ml-0"></span>
           <span className="text-xs font-black uppercase tracking-wider">LIVE &bull; NDRF ACTIVE</span>
@@ -680,72 +666,100 @@ function WelcomeTab({ setActiveTab }: any) {
 
         {/* Left Content (50%) */}
         <div className="relative z-20 px-8 md:px-16 py-12 md:py-0 w-full md:w-1/2 flex flex-col justify-center text-white">
-          <motion.div key={currentSlide} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
-            <span className="bg-white/15 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-black w-max mb-6 tracking-[0.2em] uppercase border border-white/20 inline-block">
-              {slides[currentSlide].badge}
-            </span>
-            <h2 className="text-4xl md:text-[3.5rem] font-black mb-5 leading-[1.1] drop-shadow-lg">{slides[currentSlide].title}</h2>
-            <p className="text-base md:text-lg text-white/85 mb-10 font-light max-w-lg leading-relaxed">{slides[currentSlide].desc}</p>
-            <div className="flex flex-wrap gap-4">
-              <button onClick={() => setActiveTab(slides[currentSlide].action)} className="bg-red-600 text-white font-bold px-10 py-4 rounded-2xl hover:bg-red-500 transition shadow-[0_0_30px_rgba(220,38,38,0.4)] cursor-pointer text-base">Need Help Now</button>
-              <button onClick={() => setActiveTab("Home")} className="bg-white/10 backdrop-blur-md border-2 border-white/50 text-white font-bold px-10 py-4 rounded-2xl hover:bg-white/20 transition cursor-pointer text-base">Explore Services</button>
-            </div>
-          </motion.div>
+          <AnimatePresence mode="wait">
+            <motion.div key={currentSlide} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }} transition={{ duration: 0.4 }}>
+              <span className="bg-white/15 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-black w-max mb-6 tracking-[0.2em] uppercase border border-white/20 inline-block shadow-sm">
+                {slides[currentSlide].badge}
+              </span>
+              <h2 className="text-4xl md:text-[3.5rem] font-black mb-5 leading-[1.1] drop-shadow-lg">{slides[currentSlide].title}</h2>
+              <p className="text-base md:text-lg text-white/90 mb-10 font-light max-w-lg leading-relaxed">{slides[currentSlide].desc}</p>
+              <div className="flex flex-wrap gap-4">
+                <button onClick={() => setActiveTab(slides[currentSlide].action)} className="bg-red-600 text-white font-bold px-10 py-4 rounded-2xl hover:bg-red-500 transition shadow-[0_0_30px_rgba(220,38,38,0.4)] hover:shadow-[0_0_40px_rgba(220,38,38,0.6)] hover:-translate-y-1 cursor-pointer text-base">Need Help Now</button>
+                <button onClick={() => setActiveTab("Home")} className="bg-white/10 backdrop-blur-md border-2 border-white/50 text-white font-bold px-10 py-4 rounded-2xl hover:bg-white/20 transition hover:-translate-y-1 cursor-pointer text-base">Explore Services</button>
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
 
         {/* Right Image (50%) */}
-        <div className="relative z-10 w-full md:w-1/2 h-48 md:h-full flex items-end justify-center md:justify-end overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-transparent to-transparent z-20 md:bg-gradient-to-r md:from-blue-950/60 md:via-transparent md:to-transparent"></div>
+        <div className="relative z-10 w-full md:w-1/2 h-48 md:h-full flex items-end justify-center md:justify-end overflow-visible perspective-[1000px]">
+          <div className="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-transparent to-transparent z-20 md:bg-gradient-to-r md:from-blue-950/80 md:via-transparent md:to-transparent pointer-events-none"></div>
           {slides[currentSlide].pmImage ? (
-            <img src={slides[currentSlide].pmImage} className="relative z-10 h-full max-h-[450px] object-contain object-bottom drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)]" alt="Portrait" />
+            <motion.div 
+              key={currentSlide} 
+              initial={{ scale: 0.9, opacity: 0, rotateY: 15 }} 
+              animate={{ scale: 1, opacity: 1, rotateY: 0 }} 
+              transition={{ duration: 0.8, type: "spring" }}
+              className="relative z-10 h-full max-h-[480px] origin-bottom drop-shadow-[0_20px_40px_rgba(0,0,0,0.7)]"
+            >
+              <img 
+                src={slides[currentSlide].pmImage} 
+                className="w-full h-full object-contain object-bottom filter brightness-110 contrast-125" 
+                alt="Portrait" 
+              />
+            </motion.div>
           ) : (
-            <div className="absolute inset-0 flex items-center justify-center opacity-10"><Shield size={200} className="text-white"/></div>
+            <div className="absolute inset-0 flex items-center justify-center opacity-10"><Shield size={200} className="text-white animate-pulse"/></div>
           )}
         </div>
 
         {/* Slide Indicators */}
         <div className="absolute bottom-8 left-8 md:left-16 flex gap-3 z-30">
           {slides.map((_, i) => (
-            <button key={i} onClick={() => setCurrentSlide(i)} className={`h-3 rounded-full transition-all cursor-pointer ${i === currentSlide ? 'bg-white w-10 shadow-[0_0_12px_rgba(255,255,255,0.8)]' : 'bg-white/30 hover:bg-white/50 w-3'}`}></button>
+            <button key={i} onClick={() => setCurrentSlide(i)} className={`h-3 rounded-full transition-all duration-300 cursor-pointer ${i === currentSlide ? 'bg-white w-12 shadow-[0_0_15px_rgba(255,255,255,1)]' : 'bg-white/40 hover:bg-white/70 w-3'}`}></button>
           ))}
         </div>
       </div>
 
-      {/* Live Stats Strip */}
-      <div className="bg-white border-b border-slate-200 shadow-sm">
-        <div className="px-6 md:px-12 py-5 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+      {/* Live Stats Strip (Moved below hero) */}
+      <div className="bg-white border-b border-slate-200 shadow-sm relative z-10 -mt-2 rounded-t-3xl overflow-hidden">
+        <div className="px-6 md:px-12 py-6 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
           {stats.map((s, i) => (
-            <div key={i} className="flex items-center gap-4 group">
-              <div className={`p-3 rounded-xl bg-slate-50 ${s.color} group-hover:scale-110 transition-transform`}>{s.icon}</div>
+            <div key={i} className="flex items-center gap-4 group cursor-default">
+              <div className={`p-4 rounded-2xl bg-slate-50 ${s.color} group-hover:scale-110 transition-transform shadow-sm border border-slate-100`}>{s.icon}</div>
               <div>
-                <div className="text-2xl font-black text-slate-900 leading-none">{s.value}</div>
-                <div className="text-xs text-slate-500 font-semibold mt-1">{s.label}</div>
+                <div className="text-2xl font-black text-slate-900 leading-none mb-1">{s.value}</div>
+                <div className="text-xs text-slate-500 font-semibold">{s.label}</div>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* AI Search Section */}
-      <div className="px-6 md:px-12 py-10">
-        <div className="max-w-4xl mx-auto text-center">
-          <h3 className="text-3xl font-black text-slate-900 mb-2">How can GovAssist help you today?</h3>
-          <p className="text-slate-500 mb-8 text-base">Describe what you need. Our AI will instantly route you to the correct government service.</p>
-          <div className="relative flex items-center bg-white border-2 border-slate-200 rounded-2xl p-2.5 shadow-[0_8px_30px_rgba(0,0,0,0.06)] focus-within:border-blue-500 focus-within:ring-4 focus-within:ring-blue-100 transition-all">
-            <div className="pl-4 pr-2 text-blue-500"><Search size={26} /></div>
-            <input value={searchQuery} onChange={e => setSearchQuery(e.target.value)} type="text" className="flex-1 bg-transparent py-5 px-3 text-lg outline-none text-slate-800 placeholder-slate-400" placeholder="Describe your emergency or government need..." />
-            <div className="flex items-center gap-1 pr-4 border-r border-slate-200 mr-4">
-              <button className="p-2.5 text-slate-400 hover:text-blue-500 transition rounded-full hover:bg-slate-100 cursor-pointer"><Mic size={22}/></button>
-              <button className="p-2.5 text-slate-400 hover:text-blue-500 transition rounded-full hover:bg-slate-100 cursor-pointer hidden sm:block"><Camera size={22}/></button>
-              <button className="p-2.5 text-slate-400 hover:text-blue-500 transition rounded-full hover:bg-slate-100 cursor-pointer hidden sm:block"><MapPin size={22}/></button>
+      {/* Advanced AI Search Section */}
+      <div className="px-6 md:px-12 py-10 bg-white">
+        <div className="max-w-5xl mx-auto">
+          <div className="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-2xl relative overflow-hidden border border-slate-200">
+            <div className="absolute inset-0 bg-gradient-to-br from-fuchsia-50 via-violet-50 to-cyan-50 z-0"></div>
+            
+            <div className="relative z-10 text-center mb-10">
+              <div className="inline-flex items-center gap-2 bg-fuchsia-100 text-fuchsia-600 text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-[0.2em] mb-4 border border-fuchsia-200">
+                <Zap size={14} className="text-fuchsia-500"/> AI-Powered Assistance
+              </div>
+              <h3 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">How can GovAssist help you today?</h3>
+              <p className="text-slate-500 mt-3 text-lg">Describe what you need. Our AI will instantly route you to the correct government service.</p>
             </div>
-            <button onClick={() => setActiveTab("AI Navigator")} className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold px-10 py-5 rounded-xl transition flex items-center gap-2 shadow-lg text-lg cursor-pointer">Analyze <Zap size={20} className="text-blue-200"/></button>
-          </div>
-          <div className="flex flex-wrap justify-center items-center gap-3 mt-6">
-            <span className="text-sm text-slate-500 font-bold uppercase tracking-wider mr-2">Quick Actions:</span>
-            <span onClick={() => setActiveTab("SOS Center")} className="text-sm bg-red-50 text-red-700 font-semibold px-4 py-2 rounded-full border border-red-100 cursor-pointer hover:bg-red-100 hover:scale-105 transition flex items-center gap-1.5 shadow-sm"><HeartPulse size={14}/> Need Ambulance</span>
-            <span onClick={() => setActiveTab("Legal Aid")} className="text-sm bg-slate-100 text-slate-700 font-semibold px-4 py-2 rounded-full border border-slate-200 cursor-pointer hover:bg-slate-200 hover:scale-105 transition flex items-center gap-1.5 shadow-sm"><ShieldAlert size={14}/> Report Cyber Fraud</span>
-            <span onClick={() => setActiveTab("Disaster Relief")} className="text-sm bg-blue-50 text-blue-700 font-semibold px-4 py-2 rounded-full border border-blue-100 cursor-pointer hover:bg-blue-100 hover:scale-105 transition flex items-center gap-1.5 shadow-sm"><Waves size={14}/> Find Flood Shelter</span>
+
+            <div className="relative z-10 max-w-3xl mx-auto">
+              <div className="bg-white border border-slate-200 p-2.5 rounded-[2rem] shadow-lg group focus-within:border-fuchsia-400 focus-within:ring-4 focus-within:ring-fuchsia-100 transition-all flex flex-col md:flex-row items-center gap-2">
+                <div className="flex items-center w-full md:w-auto px-4 md:px-0 md:pl-4">
+                  <button className="text-slate-400 hover:text-fuchsia-500 transition cursor-pointer"><Mic size={22} /></button>
+                  <button className="text-slate-400 hover:text-fuchsia-500 ml-4 transition cursor-pointer"><Camera size={22} /></button>
+                  <button className="text-slate-400 hover:text-fuchsia-500 ml-4 transition cursor-pointer"><MapPin size={22} /></button>
+                </div>
+                <input value={searchQuery} onChange={e => setSearchQuery(e.target.value)} type="text" placeholder="Describe your emergency..." className="w-full bg-transparent border-none outline-none py-3 px-4 md:px-6 text-lg font-medium text-slate-900 placeholder-slate-400" />
+                <button onClick={() => setActiveTab("AI Navigator")} className="btn w-full md:w-auto bg-gradient-to-r from-fuchsia-500 to-cyan-500 hover:from-fuchsia-600 hover:to-cyan-600 text-white font-bold py-4 px-8 rounded-2xl flex justify-center items-center gap-2 transition cursor-pointer shadow-lg shadow-fuchsia-200/50 whitespace-nowrap">
+                  Analyze <Zap size={18} className="animate-pulse" />
+                </button>
+              </div>
+
+              <div className="flex flex-wrap justify-center items-center gap-2 mt-6">
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.15em] mr-2">Try:</span>
+                <span onClick={() => setSearchQuery("My father is unconscious")} className="bg-slate-100 text-slate-600 text-xs font-medium px-4 py-1.5 rounded-full border border-slate-200 cursor-pointer hover:bg-fuchsia-50 hover:text-fuchsia-600 hover:border-fuchsia-200 transition">"My father is unconscious"</span>
+                <span onClick={() => setSearchQuery("Phone stolen")} className="bg-slate-100 text-slate-600 text-xs font-medium px-4 py-1.5 rounded-full border border-slate-200 cursor-pointer hover:bg-fuchsia-50 hover:text-fuchsia-600 hover:border-fuchsia-200 transition">"Phone stolen"</span>
+                <span onClick={() => setSearchQuery("Flood in my area")} className="bg-slate-100 text-slate-600 text-xs font-medium px-4 py-1.5 rounded-full border border-slate-200 cursor-pointer hover:bg-fuchsia-50 hover:text-fuchsia-600 hover:border-fuchsia-200 transition">"Flood in my area"</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -769,14 +783,14 @@ function WelcomeTab({ setActiveTab }: any) {
 
 function ServiceTile({icon, title, desc, color, onClick}: any) {
   const colorClasses: Record<string, string> = {
-    red: "text-red-600 bg-gradient-to-br from-red-50 to-red-100 group-hover:from-red-600 group-hover:to-red-700 group-hover:text-white border-red-200 group-active:from-red-700 group-active:to-red-800",
-    slate: "text-slate-600 bg-gradient-to-br from-slate-50 to-slate-100 group-hover:from-slate-700 group-hover:to-slate-800 group-hover:text-white border-slate-200 group-active:from-slate-800 group-active:to-slate-900",
-    blue: "text-blue-600 bg-gradient-to-br from-blue-50 to-blue-100 group-hover:from-blue-600 group-hover:to-blue-700 group-hover:text-white border-blue-200 group-active:from-blue-700 group-active:to-blue-800",
-    amber: "text-amber-600 bg-gradient-to-br from-amber-50 to-amber-100 group-hover:from-amber-500 group-hover:to-amber-600 group-hover:text-white border-amber-200 group-active:from-amber-600 group-active:to-amber-700",
-    emerald: "text-emerald-600 bg-gradient-to-br from-emerald-50 to-emerald-100 group-hover:from-emerald-600 group-hover:to-emerald-700 group-hover:text-white border-emerald-200 group-active:from-emerald-700 group-active:to-emerald-800",
-    purple: "text-purple-600 bg-gradient-to-br from-purple-50 to-purple-100 group-hover:from-purple-600 group-hover:to-purple-700 group-hover:text-white border-purple-200 group-active:from-purple-700 group-active:to-purple-800",
-    indigo: "text-indigo-600 bg-gradient-to-br from-indigo-50 to-indigo-100 group-hover:from-indigo-600 group-hover:to-indigo-700 group-hover:text-white border-indigo-200 group-active:from-indigo-700 group-active:to-indigo-800",
-    teal: "text-teal-600 bg-gradient-to-br from-teal-50 to-teal-100 group-hover:from-teal-600 group-hover:to-teal-700 group-hover:text-white border-teal-200 group-active:from-teal-700 group-active:to-teal-800",
+    red: "text-rose-600 bg-gradient-to-br from-rose-100 to-pink-100 group-hover:from-rose-500 group-hover:to-pink-600 group-hover:text-white border-rose-200 group-active:from-rose-600 group-active:to-pink-700",
+    slate: "text-violet-600 bg-gradient-to-br from-violet-100 to-purple-100 group-hover:from-violet-500 group-hover:to-purple-600 group-hover:text-white border-violet-200 group-active:from-violet-600 group-active:to-purple-700",
+    blue: "text-cyan-600 bg-gradient-to-br from-cyan-100 to-sky-100 group-hover:from-cyan-500 group-hover:to-sky-600 group-hover:text-white border-cyan-200 group-active:from-cyan-600 group-active:to-sky-700",
+    amber: "text-amber-500 bg-gradient-to-br from-amber-100 to-yellow-100 group-hover:from-amber-400 group-hover:to-yellow-500 group-hover:text-white border-amber-200 group-active:from-amber-500 group-active:to-yellow-600",
+    emerald: "text-emerald-600 bg-gradient-to-br from-emerald-100 to-green-100 group-hover:from-emerald-500 group-hover:to-green-600 group-hover:text-white border-emerald-200 group-active:from-emerald-600 group-active:to-green-700",
+    purple: "text-fuchsia-600 bg-gradient-to-br from-fuchsia-100 to-pink-100 group-hover:from-fuchsia-500 group-hover:to-pink-600 group-hover:text-white border-fuchsia-200 group-active:from-fuchsia-600 group-active:to-pink-700",
+    indigo: "text-indigo-600 bg-gradient-to-br from-indigo-100 to-violet-100 group-hover:from-indigo-500 group-hover:to-violet-600 group-hover:text-white border-indigo-200 group-active:from-indigo-600 group-active:to-violet-700",
+    teal: "text-teal-600 bg-gradient-to-br from-teal-100 to-cyan-100 group-hover:from-teal-500 group-hover:to-cyan-600 group-hover:text-white border-teal-200 group-active:from-teal-600 group-active:to-cyan-700",
   };
 
   return (
@@ -793,61 +807,95 @@ function ServiceTile({icon, title, desc, color, onClick}: any) {
 function HomeTab({ setActiveTab }: any) {
   return (
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-8">
-      {/* Enhanced Hero Section with PM Modi Image */}
-      <section className="bg-gradient-to-r from-blue-900 via-slate-800 to-slate-900 rounded-3xl p-8 md:p-12 relative overflow-hidden flex flex-col md:flex-row items-center justify-between shadow-xl text-white border border-slate-700">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 mix-blend-overlay"></div>
+      {/* Advanced Gateway Hero (Dashboard) */}
+      <section className="bg-white rounded-[2rem] overflow-hidden shadow-2xl shadow-fuchsia-100/30 border border-slate-200 flex flex-col lg:flex-row relative">
+        <div className="absolute inset-0 bg-gradient-to-br from-white via-fuchsia-50/30 to-cyan-50/30 z-0"></div>
         
-        <div className="max-w-2xl z-10 relative">
-          <div className="flex items-center gap-2 text-xs font-bold tracking-wider text-blue-300 uppercase mb-4 bg-blue-900/50 w-max px-3 py-1.5 rounded-full border border-blue-500/30">
-            <Shield size={14} className="text-blue-400" /> Secure Government Gateway
-          </div>
-          <h2 className="text-4xl md:text-6xl font-extrabold leading-tight mb-4 tracking-tight">
-            Right government help, <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">right now.</span>
-          </h2>
-          <p className="text-slate-300 mb-8 text-lg font-light max-w-xl">
-            Immediate AI-guided assistance for emergencies, legal aid, and disaster recovery. Powered by verified official data.
-          </p>
-          
-          {/* AI Input Bar */}
-          <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-2 shadow-2xl">
-            <div className="flex items-center px-4 py-2 bg-black/20 rounded-xl mb-2">
-              <span className="text-xs font-semibold text-slate-300 mr-2 uppercase tracking-wide">Examples:</span>
-              <div className="flex gap-2 overflow-x-auto no-scrollbar">
-                <span className="text-xs bg-white/10 px-2 py-1 rounded text-white whitespace-nowrap">"My father is unconscious"</span>
-                <span className="text-xs bg-white/10 px-2 py-1 rounded text-white whitespace-nowrap">"Phone stolen"</span>
-                <span className="text-xs bg-white/10 px-2 py-1 rounded text-white whitespace-nowrap">"Flood in my area"</span>
+        {/* Left Side: Main Interaction */}
+        <div className="relative z-10 lg:w-3/5 p-8 md:p-12 flex flex-col justify-between">
+          <div>
+            <div className="flex justify-between items-center mb-12">
+              <div className="flex items-center gap-2 text-[10px] font-bold tracking-widest text-fuchsia-600 uppercase bg-fuchsia-50 px-3 py-1.5 rounded-full border border-fuchsia-200 shadow-sm">
+                <Shield size={14} className="text-fuchsia-500" /> Secure Government Gateway
+              </div>
+              <div className="flex items-center gap-2 text-emerald-600 text-sm font-bold bg-emerald-50 px-4 py-2 rounded-full border border-emerald-200 cursor-pointer hover:bg-emerald-100 transition">
+                <CheckCircle size={14} /> PM Modi <ChevronDown size={14} />
               </div>
             </div>
             
-            <div className="flex items-center gap-2 relative">
-              <div className="flex gap-1 absolute left-2">
-                <button className="p-2 text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition" title="Voice Input"><Mic size={20} /></button>
-                <button className="p-2 text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition" title="Upload Image"><Camera size={20} /></button>
-                <button className="p-2 text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition" title="Auto Detect Location"><MapPin size={20} /></button>
+            <h1 className="text-5xl md:text-[4rem] font-extrabold text-slate-900 leading-[1.05] mb-6 tracking-tight">
+              Right government help,<br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 via-pink-500 to-cyan-500">right now.</span>
+            </h1>
+            
+            <p className="text-slate-500 text-lg font-medium max-w-lg mb-10 leading-relaxed">
+              Immediate AI-guided assistance for emergencies, legal aid, and disaster recovery. Powered by verified official data.
+            </p>
+            
+            <div className="bg-slate-50 border border-slate-200 p-3 rounded-3xl mb-12">
+              <div className="flex items-center gap-2 px-3 pt-2 pb-3 flex-wrap">
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mr-2">Examples:</span>
+                <span className="bg-white text-slate-600 text-xs font-medium px-4 py-1.5 rounded-full border border-slate-200 cursor-pointer hover:bg-fuchsia-50 hover:text-fuchsia-600 hover:border-fuchsia-200 transition">"My father is unconscious"</span>
+                <span className="bg-white text-slate-600 text-xs font-medium px-4 py-1.5 rounded-full border border-slate-200 cursor-pointer hover:bg-fuchsia-50 hover:text-fuchsia-600 hover:border-fuchsia-200 transition">"Phone stolen"</span>
+                <span className="bg-white text-slate-600 text-xs font-medium px-4 py-1.5 rounded-full border border-slate-200 cursor-pointer hover:bg-fuchsia-50 hover:text-fuchsia-600 hover:border-fuchsia-200 transition">"Flood in my area"</span>
               </div>
-              <input 
-                type="text" 
-                placeholder="Describe your emergency..." 
-                className="flex-1 outline-none text-white bg-white/5 border border-white/10 rounded-xl py-4 pl-36 pr-4 focus:bg-white/10 transition placeholder-slate-400 text-lg"
-              />
-              <button className="bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 transition shadow-lg absolute right-1">
-                Analyze <Zap size={18} />
-              </button>
+              <div className="flex items-center bg-white rounded-2xl p-2 border border-slate-200">
+                <button className="text-slate-400 hover:text-fuchsia-500 ml-3 transition cursor-pointer"><Mic size={20} /></button>
+                <button className="text-slate-400 hover:text-fuchsia-500 ml-4 transition cursor-pointer"><Camera size={20} /></button>
+                <button className="text-slate-400 hover:text-fuchsia-500 ml-4 transition cursor-pointer"><MapPin size={20} /></button>
+                <input type="text" placeholder="Describe your emergency..." className="bg-transparent border-none outline-none flex-1 ml-5 text-slate-900 placeholder-slate-400 font-medium text-lg" />
+                <button className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 hover:from-fuchsia-600 hover:to-cyan-600 text-white font-bold py-3 px-8 rounded-xl flex items-center gap-2 transition shadow-lg shadow-fuchsia-200/50 cursor-pointer">
+                  Analyze <Zap size={18} />
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <div className="flex items-center gap-2 text-xs text-slate-500 mb-8 font-medium">
+            <Lock size={12} /> Your data is secure and used only to get you the right help.
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 border-t border-slate-100 pt-8">
+            <div className="flex items-start gap-3">
+              <div className="bg-emerald-100 p-2.5 rounded-full text-emerald-600 border border-emerald-200"><CheckCircle size={20} /></div>
+              <div>
+                <div className="text-slate-900 font-bold text-sm mb-1">Verified Data</div>
+                <div className="text-slate-500 text-xs font-medium leading-relaxed">Information from official government sources</div>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <div className="bg-fuchsia-100 p-2.5 rounded-full text-fuchsia-600 border border-fuchsia-200"><Lock size={20} /></div>
+              <div>
+                <div className="text-slate-900 font-bold text-sm mb-1">Secure & Private</div>
+                <div className="text-slate-500 text-xs font-medium leading-relaxed">End-to-end encryption and data protection</div>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <div className="bg-cyan-100 p-2.5 rounded-full text-cyan-600 border border-cyan-200"><CheckCircle size={20} /></div>
+              <div>
+                <div className="text-slate-900 font-bold text-sm mb-1">Always Available</div>
+                <div className="text-slate-500 text-xs font-medium leading-relaxed">24/7 support when you need it most</div>
+              </div>
             </div>
           </div>
         </div>
-        
-        {/* PM Modi Image Area */}
-        <div className="absolute right-0 bottom-0 top-0 w-1/3 md:w-1/2 lg:w-5/12 hidden md:block z-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-transparent to-transparent z-10"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent z-10"></div>
-          <img 
-            src="https://upload.wikimedia.org/wikipedia/commons/c/c0/Official_Photograph_of_Prime_Minister_Narendra_Modi_Portrait.png" 
-            alt="PM Modi" 
-            className="object-cover object-top w-full h-full opacity-70 sepia-[.2] hue-rotate-[-10deg]"
-          />
-          <div className="absolute bottom-6 right-6 z-20 bg-slate-900/60 backdrop-blur-md text-white text-xs font-medium px-4 py-3 rounded-xl border border-white/10 italic shadow-2xl max-w-xs leading-relaxed">
-            "Connecting citizens to services with integrity and speed. A digital twin for emergency response."
+
+        {/* Right Side: How It Helps */}
+        <div className="relative z-10 lg:w-2/5 bg-slate-50 border-l border-slate-100 p-8 md:p-12 flex flex-col">
+          <h3 className="text-xs font-bold text-slate-500 tracking-widest uppercase mb-6">How it helps</h3>
+          
+          <div className="flex-1 flex flex-col gap-4">
+            <HelpCard icon={<ShieldAlert size={20}/>} title="Emergency Response" desc="Get immediate guidance and connect with local emergency services." color="blue" />
+            <HelpCard icon={<Scale size={20}/>} title="Legal Aid" desc="Find legal information and connect with verified legal assistance." color="emerald" />
+            <HelpCard icon={<CloudRain size={20}/>} title="Disaster Recovery" desc="Access relief services, report damage and track support updates." color="indigo" />
+            <HelpCard icon={<Phone size={20}/>} title="Helpline Directory" desc="Connect with verified helplines and essential services." color="amber" />
+          </div>
+          
+          <div className="mt-8 bg-white border border-slate-200 p-6 rounded-2xl relative shadow-sm">
+            <div className="text-fuchsia-300 font-serif text-5xl leading-none absolute -top-2 left-4">"</div>
+            <p className="text-slate-600 text-sm font-serif italic leading-relaxed relative z-10 mt-3">
+              Connecting citizens to services with integrity and speed. A digital twin for emergency response.
+            </p>
           </div>
         </div>
       </section>
@@ -855,34 +903,34 @@ function HomeTab({ setActiveTab }: any) {
       {/* Dynamic AI Quick Actions Grid (Live Dashboard) */}
       <section className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
         {/* Severity Indicator */}
-        <div className="glass-card border border-white/30 rounded-2xl p-4 md:p-6 shadow-xl md:card-3d">
+        <div className="bg-white border border-slate-200 rounded-2xl p-4 md:p-6 shadow-lg">
           <h3 className="text-xs md:text-sm font-bold text-slate-600 uppercase tracking-wider mb-3 md:mb-4 flex items-center gap-2">
-            <Activity size={16} className="text-blue-500" /> Area Risk Scoring
+            <Activity size={16} className="text-fuchsia-500" /> Area Risk Scoring
           </h3>
           <div className="flex items-center gap-3 md:gap-4 mb-3 md:mb-4">
-            <div className="w-14 h-14 md:w-16 md:h-16 rounded-full border-4 border-yellow-400 flex items-center justify-center text-lg md:text-xl font-extrabold text-slate-800 shadow-lg bg-white">
+            <div className="w-14 h-14 md:w-16 md:h-16 rounded-full border-4 border-fuchsia-400 flex items-center justify-center text-lg md:text-xl font-extrabold text-fuchsia-600 shadow-lg bg-white">
               68
             </div>
             <div>
               <div className="text-base md:text-lg font-bold text-slate-800">Elevated Risk</div>
-              <div className="text-xs md:text-sm text-slate-600">Heavy rainfall detected in Sector 4</div>
+              <div className="text-xs md:text-sm text-slate-500">Heavy rainfall detected in Sector 4</div>
             </div>
           </div>
           <div className="space-y-2 md:space-y-3">
-            <div className="flex justify-between text-xs font-bold"><span className="text-slate-600">Flood Risk</span><span className="text-yellow-600">Medium</span></div>
-            <div className="w-full bg-slate-200/50 rounded-full h-2 overflow-hidden backdrop-blur-sm"><div className="bg-gradient-to-r from-yellow-400 to-yellow-500 h-2 rounded-full shadow-sm" style={{width: '68%'}}></div></div>
+            <div className="flex justify-between text-xs font-bold"><span className="text-slate-600">Flood Risk</span><span className="text-amber-600">Medium</span></div>
+            <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden"><div className="bg-gradient-to-r from-amber-400 to-amber-500 h-2 rounded-full shadow-sm" style={{width: '68%'}}></div></div>
             
             <div className="flex justify-between text-xs font-bold mt-2 md:mt-3"><span className="text-slate-600">Medical Overload</span><span className="text-emerald-600">Low</span></div>
-            <div className="w-full bg-slate-200/50 rounded-full h-2 overflow-hidden backdrop-blur-sm"><div className="bg-gradient-to-r from-emerald-400 to-emerald-500 h-2 rounded-full shadow-sm" style={{width: '30%'}}></div></div>
+            <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden"><div className="bg-gradient-to-r from-emerald-400 to-emerald-500 h-2 rounded-full shadow-sm" style={{width: '30%'}}></div></div>
           </div>
         </div>
 
         {/* Dynamic Actions Map */}
-        <div className="md:col-span-2 glass-card border border-white/30 rounded-2xl p-4 md:p-6 shadow-xl flex flex-col justify-between md:card-3d">
+        <div className="md:col-span-2 bg-white border border-slate-200 rounded-2xl p-4 md:p-6 shadow-lg flex flex-col justify-between">
           <div className="flex justify-between items-start mb-3 md:mb-4">
             <div>
               <h3 className="text-base md:text-lg font-bold text-slate-800">Live AI Emergency Radar</h3>
-              <p className="text-xs md:text-sm text-slate-600">Real-time resource allocation map</p>
+              <p className="text-xs md:text-sm text-slate-500">Real-time resource allocation map</p>
             </div>
             <button onClick={() => setActiveTab("Live Map")} className="text-blue-600 text-xs md:text-sm font-bold flex items-center gap-1 bg-blue-50 px-3 md:px-4 py-1.5 md:py-2 rounded-xl hover:bg-blue-100 active:scale-95 transition cursor-pointer shadow-sm hover:shadow-md">
               <Map size={14} className="md:w-4 md:h-4" /> <span className="hidden sm:inline">Full</span> Map
@@ -935,6 +983,24 @@ function ActionCard({icon, title, desc, color, onClick}: any) {
         <p className="text-xs opacity-80 font-medium line-clamp-2">{desc}</p>
       </div>
     </button>
+  )
+}
+
+function HelpCard({icon, title, desc, color}: any) {
+  const colorClasses: Record<string, string> = {
+    blue: "bg-cyan-100 text-cyan-600 border-cyan-200",
+    emerald: "bg-emerald-100 text-emerald-600 border-emerald-200",
+    indigo: "bg-violet-100 text-violet-600 border-violet-200",
+    amber: "bg-amber-100 text-amber-600 border-amber-200"
+  };
+  return (
+    <div className="flex items-center gap-4 p-4 rounded-2xl border border-slate-200 bg-white hover:bg-slate-50 transition-colors shadow-sm">
+      <div className={`p-3 rounded-full border ${colorClasses[color]}`}>{icon}</div>
+      <div>
+        <h4 className="font-bold text-slate-900 text-sm">{title}</h4>
+        <p className="text-slate-500 text-xs">{desc}</p>
+      </div>
+    </div>
   )
 }
 
@@ -1075,7 +1141,7 @@ function AINavigatorTab() {
   };
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="h-[calc(100vh-8rem)] flex flex-col bg-slate-50 relative overflow-hidden rounded-2xl shadow-sm border border-slate-200">
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="h-[calc(100vh-8rem)] flex flex-col bg-white relative overflow-hidden rounded-2xl shadow-lg border border-slate-200">
       
       {/* Auto Escalation Popup */}
       <AnimatePresence>
@@ -1100,7 +1166,7 @@ function AINavigatorTab() {
       {/* Premium Header */}
       <div className="bg-white border-b border-slate-200 p-4 flex flex-col md:flex-row items-center justify-between gap-4 z-40 shrink-0 shadow-sm relative">
         <div className="flex items-center gap-3">
-          <div className="bg-gradient-to-br from-blue-600 to-indigo-600 p-2.5 rounded-xl shadow-md"><Zap size={20} className="text-white" /></div>
+          <div className="bg-gradient-to-br from-fuchsia-500 to-cyan-500 p-2.5 rounded-xl shadow-md"><Zap size={20} className="text-white" /></div>
           <div>
             <h2 className="font-extrabold text-slate-900 leading-tight">AI Command Center</h2>
             <div className="flex items-center gap-3 mt-1 text-[10px] font-bold uppercase tracking-wider text-slate-500">
@@ -1127,8 +1193,8 @@ function AINavigatorTab() {
 
       {/* Chat Area with Background Grid */}
       <div className="flex-1 overflow-y-auto p-4 md:p-8 relative [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:bg-slate-300 [&::-webkit-scrollbar-thumb]:rounded-full">
-        {/* Subtle Emergency Grid Pattern */}
-        <div className="absolute inset-0 pointer-events-none opacity-[0.04]" style={{ backgroundImage: 'linear-gradient(to right, #0f172a 1px, transparent 1px), linear-gradient(to bottom, #0f172a 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+        {/* Subtle Grid Pattern */}
+        <div className="absolute inset-0 pointer-events-none opacity-[0.02]" style={{ backgroundImage: 'linear-gradient(to right, #0f172a 1px, transparent 1px), linear-gradient(to bottom, #0f172a 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
         
         <div className="max-w-[1100px] mx-auto space-y-6 pb-40 relative z-10 flex flex-col">
           {messages.map((msg) => (
@@ -1137,7 +1203,7 @@ function AINavigatorTab() {
                 
                 {/* Avatar */}
                 {msg.sender === "ai" && (
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white shrink-0 shadow-md border border-blue-400/30">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-fuchsia-500 to-cyan-500 flex items-center justify-center text-white shrink-0 shadow-lg shadow-fuchsia-200/50 border border-fuchsia-300/30">
                     <Shield size={18} />
                   </div>
                 )}
@@ -1146,8 +1212,8 @@ function AINavigatorTab() {
                   {/* Bubble */}
                   <div className={`p-5 shadow-sm text-[15px] leading-relaxed relative ${
                     msg.sender === "user" 
-                      ? "bg-slate-900 text-white rounded-[24px] rounded-tr-sm text-right" 
-                      : "bg-white border border-slate-200 text-slate-800 rounded-[24px] rounded-tl-sm w-full"
+                      ? "bg-gradient-to-r from-fuchsia-500 to-violet-500 text-white rounded-[24px] rounded-tr-sm text-right" 
+                      : "bg-white border border-fuchsia-200 text-slate-800 rounded-[24px] rounded-tl-sm w-full"
                   }`}>
                     {msg.sender === "ai" && msg.severity && (
                       <span className={`absolute -top-3 left-4 text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded shadow-sm border ${
@@ -1192,10 +1258,10 @@ function AINavigatorTab() {
           {isTyping && (
             <div className="flex w-full justify-start">
               <div className="flex gap-4 w-full md:max-w-[55%]">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white shrink-0 shadow-md border border-blue-400/30">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-fuchsia-500 to-cyan-500 flex items-center justify-center text-white shrink-0 shadow-lg shadow-fuchsia-200/50 border border-fuchsia-300/30">
                   <Shield size={18} />
                 </div>
-                <div className="p-4 bg-white border border-slate-200 rounded-[24px] rounded-tl-sm shadow-sm flex items-center gap-2 text-slate-500 text-sm font-medium w-max">
+                <div className="p-4 bg-white border border-fuchsia-200 rounded-[24px] rounded-tl-sm shadow-sm flex items-center gap-2 text-slate-500 text-sm font-medium w-max">
                   GovAssist AI is analyzing <span className="flex gap-1 ml-1"><span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style={{animationDelay: '0ms'}}></span><span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style={{animationDelay: '150ms'}}></span><span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style={{animationDelay: '300ms'}}></span></span>
                 </div>
               </div>
@@ -1205,18 +1271,18 @@ function AINavigatorTab() {
       </div>
 
       {/* Sticky Bottom Composer */}
-      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-50 via-slate-50 to-transparent pt-12 pb-6 px-4 md:px-8 z-30 pointer-events-none">
+      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-white via-white to-transparent pt-12 pb-6 px-4 md:px-8 z-30 pointer-events-none">
         <div className="max-w-[1000px] mx-auto pointer-events-auto">
           {/* Quick Actions (Horizontal Scroll) */}
           <div className="flex overflow-x-auto gap-2 mb-3 no-scrollbar pb-2">
-            <button onClick={() => handleSend("Need ambulance immediately")} className="shrink-0 bg-white/90 backdrop-blur-md border border-red-200 hover:bg-red-50 text-slate-700 hover:text-red-700 px-4 py-2.5 rounded-2xl text-xs font-bold transition flex items-center gap-2 shadow-sm cursor-pointer"><HeartPulse size={14} className="text-red-500"/> Need Ambulance</button>
-            <button onClick={() => handleSend("Report stolen phone")} className="shrink-0 bg-white/90 backdrop-blur-md border border-slate-200 hover:border-blue-300 hover:bg-blue-50 text-slate-700 hover:text-blue-700 px-4 py-2.5 rounded-2xl text-xs font-bold transition flex items-center gap-2 shadow-sm cursor-pointer"><ShieldAlert size={14} className="text-blue-500"/> Report Theft</button>
-            <button onClick={() => handleSend("Where is the nearest flood shelter?")} className="shrink-0 bg-white/90 backdrop-blur-md border border-slate-200 hover:border-blue-300 hover:bg-blue-50 text-slate-700 hover:text-blue-700 px-4 py-2.5 rounded-2xl text-xs font-bold transition flex items-center gap-2 shadow-sm cursor-pointer"><Waves size={14} className="text-cyan-500"/> Find Shelter</button>
-            <button onClick={() => handleSend("Bank account frozen")} className="shrink-0 bg-white/90 backdrop-blur-md border border-slate-200 hover:border-slate-300 hover:bg-slate-100 text-slate-700 hover:text-slate-900 px-4 py-2.5 rounded-2xl text-xs font-bold transition flex items-center gap-2 shadow-sm cursor-pointer"><Lock size={14} className="text-amber-500"/> Cyber Fraud</button>
+            <button onClick={() => handleSend("Need ambulance immediately")} className="shrink-0 bg-white border border-red-200 hover:bg-red-50 text-slate-700 hover:text-red-600 px-4 py-2.5 rounded-2xl text-xs font-bold transition flex items-center gap-2 shadow-sm cursor-pointer"><HeartPulse size={14} className="text-red-500"/> Need Ambulance</button>
+            <button onClick={() => handleSend("Report stolen phone")} className="shrink-0 bg-white border border-slate-200 hover:bg-blue-50 text-slate-700 hover:text-blue-600 px-4 py-2.5 rounded-2xl text-xs font-bold transition flex items-center gap-2 shadow-sm cursor-pointer"><ShieldAlert size={14} className="text-blue-500"/> Report Theft</button>
+            <button onClick={() => handleSend("Where is the nearest flood shelter?")} className="shrink-0 bg-white border border-slate-200 hover:bg-cyan-50 text-slate-700 hover:text-cyan-600 px-4 py-2.5 rounded-2xl text-xs font-bold transition flex items-center gap-2 shadow-sm cursor-pointer"><Waves size={14} className="text-cyan-500"/> Find Shelter</button>
+            <button onClick={() => handleSend("Bank account frozen")} className="shrink-0 bg-white border border-slate-200 hover:bg-amber-50 text-slate-700 hover:text-amber-600 px-4 py-2.5 rounded-2xl text-xs font-bold transition flex items-center gap-2 shadow-sm cursor-pointer"><Lock size={14} className="text-amber-500"/> Cyber Fraud</button>
           </div>
 
           {/* Premium Input Bar */}
-          <div className="bg-white/95 backdrop-blur-xl border border-slate-200 shadow-[0_15px_40px_rgba(0,0,0,0.08)] p-2 rounded-[32px] flex items-center gap-2 transition-all focus-within:ring-4 focus-within:ring-blue-100 focus-within:border-blue-400">
+          <div className="bg-white border-2 border-slate-200 shadow-lg p-2 rounded-[32px] flex items-center gap-2 transition-all focus-within:ring-4 focus-within:ring-fuchsia-100 focus-within:border-fuchsia-400">
             <div className="flex items-center gap-1 pl-2">
               <button className="p-2.5 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-full transition cursor-pointer"><Mic size={22}/></button>
               <button className="p-2.5 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-full transition cursor-pointer hidden sm:block"><Camera size={22}/></button>
@@ -1236,7 +1302,7 @@ function AINavigatorTab() {
             <button 
               onClick={() => handleSend()}
               disabled={!input.trim()}
-              className="bg-gradient-to-br from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 disabled:opacity-50 disabled:from-slate-400 disabled:to-slate-500 text-white p-3.5 rounded-full transition cursor-pointer flex items-center justify-center shadow-lg mr-1 border border-blue-500/50"
+              className="bg-gradient-to-br from-fuchsia-500 to-cyan-500 hover:from-fuchsia-600 hover:to-cyan-600 disabled:opacity-50 disabled:from-slate-400 disabled:to-slate-500 text-white p-3.5 rounded-full transition cursor-pointer flex items-center justify-center shadow-lg mr-1 border border-fuchsia-400/50"
             >
               <Send size={20} className={input.trim() ? "translate-x-0.5 translate-y-[-1px]" : ""} />
             </button>
@@ -1257,43 +1323,43 @@ function SOSCenterTab() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <button className="bg-red-600 hover:bg-red-700 text-white rounded-3xl p-8 shadow-[0_10px_30px_rgba(220,38,38,0.3)] hover:shadow-[0_10px_40px_rgba(220,38,38,0.5)] transition-all transform hover:-translate-y-1 flex flex-col items-center justify-center gap-4 group">
-          <div className="bg-white/20 p-6 rounded-full group-hover:scale-110 transition-transform">
+        <button className="bg-white hover:bg-red-50 text-slate-700 rounded-3xl p-8 shadow-lg border border-red-200 transition-all transform hover:-translate-y-1 flex flex-col items-center justify-center gap-4 group">
+          <div className="bg-gradient-to-br from-red-500 to-rose-500 p-6 rounded-full group-hover:scale-110 transition-transform text-white">
             <HeartPulse size={64} />
           </div>
           <div className="text-center">
-            <h3 className="text-3xl font-black tracking-tight mb-1">Ambulance</h3>
-            <p className="font-medium text-red-200">Medical emergencies only</p>
+            <h3 className="text-3xl font-black tracking-tight mb-1 text-slate-900">Ambulance</h3>
+            <p className="font-medium text-red-500">Medical emergencies only</p>
           </div>
         </button>
 
-        <button className="bg-blue-700 hover:bg-blue-800 text-white rounded-3xl p-8 shadow-[0_10px_30px_rgba(29,78,216,0.3)] hover:shadow-[0_10px_40px_rgba(29,78,216,0.5)] transition-all transform hover:-translate-y-1 flex flex-col items-center justify-center gap-4 group">
-          <div className="bg-white/20 p-6 rounded-full group-hover:scale-110 transition-transform">
+        <button className="bg-white hover:bg-cyan-50 text-slate-700 rounded-3xl p-8 shadow-lg border border-cyan-200 transition-all transform hover:-translate-y-1 flex flex-col items-center justify-center gap-4 group">
+          <div className="bg-gradient-to-br from-cyan-500 to-blue-500 p-6 rounded-full group-hover:scale-110 transition-transform text-white">
             <ShieldAlert size={64} />
           </div>
           <div className="text-center">
-            <h3 className="text-3xl font-black tracking-tight mb-1">Police</h3>
-            <p className="font-medium text-blue-200">Crime in progress / Threat</p>
+            <h3 className="text-3xl font-black tracking-tight mb-1 text-slate-900">Police</h3>
+            <p className="font-medium text-cyan-600">Crime in progress / Threat</p>
           </div>
         </button>
 
-        <button className="bg-orange-600 hover:bg-orange-700 text-white rounded-3xl p-8 shadow-[0_10px_30px_rgba(234,88,12,0.3)] hover:shadow-[0_10px_40px_rgba(234,88,12,0.5)] transition-all transform hover:-translate-y-1 flex flex-col items-center justify-center gap-4 group">
-          <div className="bg-white/20 p-6 rounded-full group-hover:scale-110 transition-transform">
+        <button className="bg-white hover:bg-amber-50 text-slate-700 rounded-3xl p-8 shadow-lg border border-amber-200 transition-all transform hover:-translate-y-1 flex flex-col items-center justify-center gap-4 group">
+          <div className="bg-gradient-to-br from-amber-500 to-orange-500 p-6 rounded-full group-hover:scale-110 transition-transform text-white">
             <AlertTriangle size={64} />
           </div>
           <div className="text-center">
-            <h3 className="text-3xl font-black tracking-tight mb-1">Fire / Rescue</h3>
-            <p className="font-medium text-orange-200">Fire, accidents, trapped</p>
+            <h3 className="text-3xl font-black tracking-tight mb-1 text-slate-900">Fire / Rescue</h3>
+            <p className="font-medium text-amber-600">Fire, accidents, trapped</p>
           </div>
         </button>
 
-        <button className="bg-slate-900 hover:bg-black text-white rounded-3xl p-8 shadow-[0_10px_30px_rgba(15,23,42,0.3)] hover:shadow-[0_10px_40px_rgba(15,23,42,0.5)] transition-all transform hover:-translate-y-1 flex flex-col items-center justify-center gap-4 group">
-          <div className="bg-white/10 p-6 rounded-full group-hover:scale-110 transition-transform">
+        <button className="bg-white hover:bg-violet-50 text-slate-700 rounded-3xl p-8 shadow-lg border border-violet-200 transition-all transform hover:-translate-y-1 flex flex-col items-center justify-center gap-4 group">
+          <div className="bg-gradient-to-br from-violet-500 to-fuchsia-500 p-6 rounded-full group-hover:scale-110 transition-transform text-white">
             <Volume2 size={64} />
           </div>
           <div className="text-center">
-            <h3 className="text-3xl font-black tracking-tight mb-1">Silent Panic</h3>
-            <p className="font-medium text-slate-400">Sends location secretly to contacts</p>
+            <h3 className="text-3xl font-black tracking-tight mb-1 text-slate-900">Silent Panic</h3>
+            <p className="font-medium text-violet-500">Sends location secretly to contacts</p>
           </div>
         </button>
       </div>
@@ -1396,12 +1462,12 @@ function SettingsTab() {
           </SettingSection>
 
           <SettingSection title="Offline Mode (Hackathon Special)" desc="Download critical data for use without internet">
-            <div className="bg-slate-900 text-white rounded-xl p-6 flex items-center justify-between">
+            <div className="bg-gradient-to-r from-fuchsia-50 via-violet-50 to-cyan-50 border border-fuchsia-200 text-slate-900 rounded-xl p-6 flex items-center justify-between">
               <div>
-                <h4 className="font-bold text-lg mb-1">District Emergency Pack</h4>
-                <p className="text-sm text-slate-400 max-w-sm">Downloads offline maps, local shelter coordinates, and cached helplines for your current district.</p>
+                <h4 className="font-bold text-lg mb-1 text-fuchsia-700">District Emergency Pack</h4>
+                <p className="text-sm text-slate-600 max-w-sm">Downloads offline maps, local shelter coordinates, and cached helplines for your current district.</p>
               </div>
-              <button onClick={() => handleAction('Downloading District Emergency Pack (45MB)...')} className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 cursor-pointer transition">
+              <button onClick={() => handleAction('Downloading District Emergency Pack (45MB)...')} className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 hover:from-fuchsia-600 hover:to-cyan-600 text-white px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 cursor-pointer transition shadow-md">
                 Download (45MB)
               </button>
             </div>
@@ -1417,7 +1483,7 @@ function SettingsTab() {
 function SettingsNav({label, icon, active = false}: any) {
   return (
     <button className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
-      active ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:bg-slate-100'
+      active ? 'bg-gradient-to-r from-fuchsia-500 to-cyan-500 text-white shadow-md shadow-fuchsia-200/50' : 'text-slate-600 hover:bg-fuchsia-50'
     }`}>
       {icon} {label}
     </button>
@@ -1459,25 +1525,6 @@ function ToggleRow({label, desc, enabled, onToggle}: any) {
   )
 }
 
-function ActionCard_OLD({icon, title, desc, color}: any) {
-  const colorMap: Record<string, string> = {
-    red: "bg-red-50 border-red-100 text-red-600 hover:border-red-300",
-    blue: "bg-blue-50 border-blue-100 text-blue-600 hover:border-blue-300",
-    amber: "bg-amber-50 border-amber-100 text-amber-600 hover:border-amber-300",
-    slate: "bg-slate-100 border-slate-200 text-slate-700 hover:border-slate-300",
-  };
-  
-  return (
-    <button className={`p-4 rounded-xl border transition text-left flex flex-col justify-between h-32 ${colorMap[color]}`}>
-      <div className="bg-white p-2 rounded-lg w-max shadow-sm">{icon}</div>
-      <div>
-        <h4 className="font-bold text-slate-900 text-sm leading-tight mb-1">{title}</h4>
-        <p className="text-xs opacity-80">{desc}</p>
-      </div>
-    </button>
-  )
-}
-
 function NavItem({ icon, label, active, onClick, isAlert, badge, collapsed }: { icon: React.ReactNode, label: string, active: boolean, onClick: () => void, isAlert?: boolean, badge?: string, collapsed?: boolean }) {
   return (
     <div className="relative group/nav cursor-pointer" onClick={onClick}>
@@ -1485,15 +1532,15 @@ function NavItem({ icon, label, active, onClick, isAlert, badge, collapsed }: { 
         className={`w-full flex items-center ${collapsed ? 'justify-center h-[48px]' : 'justify-between h-[44px]'} px-3 rounded-xl text-sm font-semibold transition-all duration-200 group ${
           active 
             ? (isAlert 
-                ? "bg-gradient-to-r from-red-50 to-pink-50 text-red-600 border border-red-200 shadow-sm shadow-red-100" 
+                ? "bg-gradient-to-r from-red-50 to-slate-50 text-red-600 border border-red-200 shadow-sm shadow-red-100" 
                 : (collapsed 
                     ? "bg-blue-50 text-blue-600 border-l-[3px] border-blue-500 rounded-l-none" 
-                    : "bg-gradient-to-r from-blue-50 to-pink-50/50 text-blue-600 border border-blue-200 shadow-sm shadow-blue-100"))
-            : "text-slate-500 hover:bg-pink-50/50 hover:text-slate-700 border border-transparent"
+                    : "bg-gradient-to-r from-blue-50 to-slate-50/50 text-blue-600 border border-blue-200 shadow-sm shadow-blue-100"))
+            : "text-slate-500 hover:bg-slate-50/50 hover:text-slate-700 border border-transparent"
         }`}
       >
         <div className={`flex items-center ${collapsed ? 'justify-center' : 'gap-3'} w-full relative`}>
-          <div className={`${active ? (isAlert ? "text-red-500" : "text-blue-600") : "text-slate-400 group-hover:text-pink-500 transition-colors"} ${collapsed ? 'group-hover/nav:scale-110 transition-transform' : ''}`}>
+          <div className={`${active ? (isAlert ? "text-red-500" : "text-blue-600") : "text-slate-400 group-hover:text-slate-500 transition-colors"} ${collapsed ? 'group-hover/nav:scale-110 transition-transform' : ''}`}>
             {icon}
           </div>
           {!collapsed && <span>{label}</span>}
@@ -1513,152 +1560,16 @@ function NavItem({ icon, label, active, onClick, isAlert, badge, collapsed }: { 
   );
 }
 
-// --- NEW FEATURES FOR COMMAND CENTER ---
-
-function LiveMapTab() {
-  return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="h-[calc(100vh-8rem)] flex bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden relative">
-      
-      {/* Sidebar for Map */}
-      <div className="w-80 bg-white border-r border-slate-200 flex flex-col z-20 relative shadow-lg hidden md:flex">
-        <div className="p-4 border-b border-slate-100 bg-slate-50">
-          <h2 className="font-bold text-slate-800 text-lg flex items-center gap-2"><Map size={18} /> Emergency Radar</h2>
-          <div className="mt-3 relative">
-            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-            <input type="text" placeholder="Search areas, shelters..." className="w-full bg-white border border-slate-200 rounded-lg py-2 pl-9 pr-3 text-sm outline-none focus:border-blue-500" />
-          </div>
-        </div>
-        <div className="flex-1 overflow-y-auto p-2 space-y-2">
-          <div className="text-xs font-bold text-slate-500 uppercase px-2 pt-2">Active Threats near you</div>
-          <button className="w-full text-left p-3 hover:bg-slate-50 rounded-xl transition border border-transparent hover:border-slate-200">
-            <div className="flex gap-3">
-              <div className="bg-red-100 text-red-600 p-2 rounded-lg h-max"><AlertTriangle size={16} /></div>
-              <div>
-                <div className="font-bold text-slate-800 text-sm">Flash Flood Zone</div>
-                <div className="text-xs text-slate-500 mt-0.5">Downtown • 1.2km away</div>
-                <div className="text-xs font-bold text-red-600 mt-1">EVACUATE IMMEDIATELY</div>
-              </div>
-            </div>
-          </button>
-          <button className="w-full text-left p-3 hover:bg-slate-50 rounded-xl transition border border-transparent hover:border-slate-200 bg-blue-50/50 border-blue-100">
-            <div className="flex gap-3">
-              <div className="bg-amber-100 text-amber-600 p-2 rounded-lg h-max"><AlertTriangle size={16} /></div>
-              <div>
-                <div className="font-bold text-slate-800 text-sm">Traffic Blockage</div>
-                <div className="text-xs text-slate-500 mt-0.5">NH-44 Highway • 3.5km</div>
-                <div className="text-xs font-bold text-amber-600 mt-1">AVOID ROUTE</div>
-              </div>
-            </div>
-          </button>
-
-          <div className="text-xs font-bold text-slate-500 uppercase px-2 pt-4">Resources</div>
-          <button className="w-full text-left p-3 hover:bg-slate-50 rounded-xl transition border border-transparent hover:border-slate-200">
-            <div className="flex gap-3">
-              <div className="bg-emerald-100 text-emerald-600 p-2 rounded-lg h-max"><Tent size={16} /></div>
-              <div>
-                <div className="font-bold text-slate-800 text-sm">Relief Camp Alpha</div>
-                <div className="text-xs text-slate-500 mt-0.5">Central School • 2.1km</div>
-                <div className="text-xs font-bold text-emerald-600 mt-1 flex items-center gap-1"><CheckCircle size={12}/> Space Available</div>
-              </div>
-            </div>
-          </button>
-          <button className="w-full text-left p-3 hover:bg-slate-50 rounded-xl transition border border-transparent hover:border-slate-200">
-            <div className="flex gap-3">
-              <div className="bg-emerald-100 text-emerald-600 p-2 rounded-lg h-max"><Stethoscope size={16} /></div>
-              <div>
-                <div className="font-bold text-slate-800 text-sm">City Hospital</div>
-                <div className="text-xs text-slate-500 mt-0.5">West Block • 4.0km</div>
-                <div className="text-xs font-bold text-emerald-600 mt-1">Trauma Center Open</div>
-              </div>
-            </div>
-          </button>
-        </div>
-        <div className="p-4 border-t border-slate-100 bg-slate-50">
-          <button className="w-full bg-slate-900 text-white font-bold py-2.5 rounded-lg text-sm flex justify-center items-center gap-2 hover:bg-slate-800 transition shadow">
-            <Zap size={16} /> Auto-Route to Safety
-          </button>
-        </div>
-      </div>
-
-      {/* Actual Map Area */}
-      <div className="flex-1 relative bg-slate-100">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/grid-me.png')] opacity-80 z-0"></div>
-        
-        {/* Route Line SVG Mock */}
-        <svg className="absolute inset-0 w-full h-full pointer-events-none z-0" style={{ filter: 'drop-shadow(0 0 4px rgba(59, 130, 246, 0.5))' }}>
-          <path d="M 50% 50% Q 60% 40%, 75% 75%" fill="none" stroke="#3b82f6" strokeWidth="4" strokeDasharray="8 8" className="animate-[dash_20s_linear_infinite]" />
-        </svg>
-        
-        {/* Map Filters Overlay */}
-        <div className="absolute top-4 left-4 md:left-4 z-10 bg-white rounded-xl shadow-lg border border-slate-200 p-1.5 flex flex-col md:flex-row gap-1">
-          <button className="p-2.5 hover:bg-slate-100 rounded-lg text-slate-600 cursor-pointer" title="Hospitals"><Stethoscope size={20}/></button>
-          <button className="p-2.5 hover:bg-slate-100 rounded-lg text-slate-600 cursor-pointer" title="Police"><ShieldAlert size={20}/></button>
-          <button className="p-2.5 bg-slate-100 rounded-lg text-slate-900 cursor-pointer shadow-inner" title="Shelters"><Tent size={20}/></button>
-          <button className="p-2.5 hover:bg-slate-100 rounded-lg text-slate-600 cursor-pointer" title="Hazards"><FileWarning size={20}/></button>
-          <div className="w-px h-8 bg-slate-200 my-auto mx-1 hidden md:block"></div>
-          <div className="h-px w-8 bg-slate-200 mx-auto my-1 md:hidden"></div>
-          <button className="p-2.5 bg-blue-50 hover:bg-blue-100 rounded-lg text-blue-600 cursor-pointer" title="My Location"><MapPin size={20}/></button>
-        </div>
-
-        {/* You */}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 cursor-pointer group">
-          <div className="relative">
-             <div className="w-24 h-24 bg-blue-500/20 rounded-full animate-ping absolute -top-8 -left-8"></div>
-             <div className="w-8 h-8 bg-blue-600 rounded-full border-4 border-white shadow-xl relative z-10 flex items-center justify-center">
-               <User size={14} className="text-white"/>
-             </div>
-             <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-slate-900 text-white text-xs font-bold px-2 py-1 rounded shadow-lg opacity-0 group-hover:opacity-100 transition pointer-events-none whitespace-nowrap">Your Location</div>
-          </div>
-        </div>
-
-        {/* Traffic Blocked */}
-        <div className="absolute top-1/3 left-[20%] z-10 bg-white p-3 rounded-xl shadow-lg border border-amber-200 flex items-center gap-3 cursor-pointer hover:scale-105 transition">
-          <div className="bg-amber-100 p-2 rounded-lg text-amber-600"><AlertTriangle size={16}/></div>
-          <div>
-            <div className="text-xs font-bold text-slate-800">Traffic Blocked</div>
-            <div className="text-[10px] text-slate-500">Avoid NH-44</div>
-          </div>
-        </div>
-
-        {/* City Hospital */}
-        <div className="absolute bottom-[20%] right-[30%] z-10 bg-white p-3 rounded-xl shadow-lg border border-emerald-200 flex items-center gap-3 cursor-pointer hover:scale-105 transition">
-          <div className="bg-emerald-100 p-2 rounded-lg text-emerald-600"><Stethoscope size={16}/></div>
-          <div>
-            <div className="text-xs font-bold text-slate-800">City Hospital</div>
-            <div className="text-[10px] text-emerald-600 font-bold">Available Beds: 14</div>
-          </div>
-        </div>
-
-        {/* Relief Camp */}
-        <div className="absolute bottom-[25%] right-[25%] z-10 bg-white p-3 rounded-xl shadow-lg border border-emerald-200 flex items-center gap-3 cursor-pointer hover:scale-105 transition">
-          <div className="bg-emerald-100 p-2 rounded-lg text-emerald-600"><Tent size={16}/></div>
-          <div>
-            <div className="text-xs font-bold text-slate-800">Relief Camp Alpha</div>
-            <div className="text-[10px] text-emerald-600 font-bold">Destination</div>
-          </div>
-        </div>
-        
-        {/* Danger Zone Polygon Mock */}
-        <div className="absolute top-[20%] right-[20%] w-64 h-64 bg-red-500/20 rounded-[40%_60%_70%_30%/40%_50%_60%_50%] border-2 border-red-500/50 animate-[spin_20s_linear_infinite] z-0 pointer-events-none"></div>
-        <div className="absolute top-[35%] right-[28%] z-10 bg-red-600 text-white px-2 py-1 rounded shadow text-[10px] font-bold uppercase animate-pulse">Flood Zone</div>
-
-        <div className="absolute top-4 right-4 z-10 bg-slate-900/90 backdrop-blur text-white px-4 py-2 rounded-xl shadow-lg font-bold text-sm flex items-center gap-2">
-          <Activity size={16} className="text-emerald-400 animate-pulse" />
-          Live GPS Sync
-        </div>
-      </div>
-    </motion.div>
-  )
-}
+// --- NEW MODULES ---
 
 function VolunteerPortalTab() {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="max-w-4xl mx-auto space-y-6">
-      <div className="bg-emerald-600 text-white rounded-3xl p-8 shadow-xl relative overflow-hidden">
-        <div className="absolute right-0 top-0 opacity-10"><Users size={200}/></div>
+      <div className="bg-white text-slate-900 rounded-3xl p-8 shadow-xl border border-emerald-200 relative overflow-hidden">
+        <div className="absolute right-0 top-0 opacity-5"><Users size={200}/></div>
         <h2 className="text-3xl font-extrabold mb-2 relative z-10">Civil Defense Network</h2>
-        <p className="text-emerald-100 max-w-xl relative z-10">Register your skills and vehicles to assist local authorities during large-scale emergencies.</p>
-        <button className="mt-6 bg-white text-emerald-700 font-bold px-6 py-3 rounded-lg shadow-lg relative z-10">Sign Up as Volunteer</button>
+        <p className="text-slate-500 max-w-xl relative z-10">Register your skills and vehicles to assist local authorities during large-scale emergencies.</p>
+        <button className="mt-6 bg-white text-emerald-600 font-bold px-6 py-3 rounded-lg shadow-lg relative z-10 hover:shadow-xl transition">Sign Up as Volunteer</button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -1682,64 +1593,7 @@ function VolunteerPortalTab() {
   )
 }
 
-function MedicalProfileTab() {
-  return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="max-w-4xl mx-auto space-y-6">
-      <div className="flex justify-between items-end mb-6">
-        <div>
-          <h2 className="text-3xl font-extrabold text-slate-900">Medical Profile</h2>
-          <p className="text-slate-500">Critical health data automatically shared with first responders during SOS.</p>
-        </div>
-        <button className="text-blue-600 bg-blue-50 hover:bg-blue-100 px-4 py-2 rounded-lg font-bold text-sm transition">Edit Profile</button>
-      </div>
 
-      <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-        <div className="bg-red-50 p-6 flex items-center gap-4 border-b border-red-100">
-          <div className="bg-red-600 w-16 h-16 rounded-full flex items-center justify-center text-white font-black text-2xl shadow-md">
-            O+
-          </div>
-          <div>
-            <h3 className="text-xl font-bold text-red-900">Rahul Sharma</h3>
-            <p className="text-red-700 text-sm font-medium">ABHA ID: 91-0000-1111-2222</p>
-          </div>
-        </div>
-
-        <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div>
-            <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Allergies & Conditions</h4>
-            <div className="flex flex-wrap gap-2 mb-6">
-              <span className="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-sm font-bold border border-amber-200">Penicillin Allergy</span>
-              <span className="bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-sm font-bold border border-slate-200">Asthma</span>
-            </div>
-
-            <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Current Medications</h4>
-            <ul className="space-y-2 text-sm text-slate-600">
-              <li className="flex items-center gap-2"><CheckCircle size={14} className="text-emerald-500"/> Albuterol Inhaler (As needed)</li>
-              <li className="flex items-center gap-2"><CheckCircle size={14} className="text-emerald-500"/> Cetirizine 10mg (Daily)</li>
-            </ul>
-          </div>
-          
-          <div className="space-y-6">
-            <div>
-              <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Emergency Doctor</h4>
-              <div className="bg-slate-50 p-3 rounded-lg border border-slate-100">
-                <div className="font-bold text-slate-800">Dr. Anjali Desai</div>
-                <div className="text-sm text-slate-500">General Physician • +91 98765 11111</div>
-              </div>
-            </div>
-            <div>
-              <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Health Insurance</h4>
-              <div className="bg-slate-50 p-3 rounded-lg border border-slate-100">
-                <div className="font-bold text-slate-800">Ayushman Bharat PM-JAY</div>
-                <div className="text-sm text-slate-500">Policy: AB-4455-6677</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  )
-}
 
 // --- NEW MODULES ---
 
@@ -1959,11 +1813,11 @@ function LegalAidTab() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div className="bg-slate-900 text-white p-6 rounded-2xl shadow-lg relative overflow-hidden group cursor-pointer">
+        <div className="bg-gradient-to-br from-fuchsia-500 via-violet-500 to-cyan-500 text-white p-6 rounded-2xl shadow-lg shadow-fuchsia-200/50 relative overflow-hidden group cursor-pointer">
           <div className="absolute -right-4 -bottom-4 opacity-20 group-hover:scale-110 transition-transform"><FileText size={100}/></div>
           <h3 className="text-xl font-bold mb-2">Draft e-FIR</h3>
-          <p className="text-slate-400 text-sm mb-6">AI-assisted drafting for lost items or non-heinous crimes.</p>
-          <button onClick={() => handleAction('e-FIR Draft initiated! AI is preparing your document...')} className="bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-lg text-sm font-bold shadow cursor-pointer transition">Start Draft</button>
+          <p className="text-white/80 text-sm mb-6">AI-assisted drafting for lost items or non-heinous crimes.</p>
+          <button onClick={() => handleAction('e-FIR Draft initiated! AI is preparing your document...')} className="bg-white/20 hover:bg-white/30 backdrop-blur-md px-4 py-2 rounded-lg text-sm font-bold shadow cursor-pointer transition">Start Draft</button>
         </div>
 
         <div onClick={() => handleAction('Connecting you with available Pro Bono lawyers...')} className="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm hover:shadow-md transition cursor-pointer">
@@ -1999,12 +1853,12 @@ function DisasterReliefTab() {
           <CheckCircle size={18} /> {activeAction}
         </motion.div>
       )}
-      <div className="bg-amber-600 text-white rounded-3xl p-8 flex justify-between items-center shadow-xl">
+      <div className="bg-white text-slate-900 rounded-3xl p-8 flex justify-between items-center shadow-xl border border-fuchsia-200">
         <div>
           <h2 className="text-3xl font-extrabold mb-2">Disaster Relief Hub</h2>
-          <p className="text-amber-100 max-w-xl">Coordinate volunteers, claim government compensation, and donate securely to official state funds.</p>
+          <p className="text-slate-500 max-w-xl">Coordinate volunteers, claim government compensation, and donate securely to official state funds.</p>
         </div>
-        <Tent size={64} className="opacity-50" />
+        <Tent size={64} className="text-fuchsia-300" />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -2016,7 +1870,7 @@ function DisasterReliefTab() {
         <div className="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm">
           <h3 className="text-xl font-bold text-slate-900 mb-4">Volunteer Registration</h3>
           <p className="text-slate-600 text-sm mb-6">Join the civil defense or local NGO network for active relief work.</p>
-          <button onClick={() => handleAction('Volunteer registration submitted! You will be contacted shortly.')} className="w-full bg-slate-900 text-white font-bold py-2 rounded-lg hover:bg-slate-800 transition cursor-pointer">Register as Volunteer</button>
+          <button onClick={() => handleAction('Volunteer registration submitted! You will be contacted shortly.')} className="w-full bg-gradient-to-r from-fuchsia-500 to-cyan-500 text-white font-bold py-2 rounded-lg hover:shadow-lg hover:shadow-fuchsia-200/50 transition cursor-pointer">Register as Volunteer</button>
         </div>
       </div>
     </motion.div>
@@ -2054,10 +1908,10 @@ function AdminDashboardTab() {
           <div className="text-3xl font-black text-slate-900">145</div>
           <div className="text-blue-500 text-xs font-bold mt-2">Deployed across 12 zones</div>
         </div>
-        <div className="bg-slate-900 text-white p-5 rounded-2xl shadow-lg flex flex-col justify-center border border-slate-800">
-          <div className="text-slate-400 text-xs font-bold mb-1 uppercase">Emergency Action</div>
-          <p className="text-xs text-slate-300 mb-3 leading-tight">Instantly override networks to push SMS to all active citizens.</p>
-          <button className="w-full bg-red-600 hover:bg-red-500 py-2.5 rounded-lg font-bold text-sm flex items-center justify-center gap-2 transition cursor-pointer shadow-md">
+        <div className="bg-gradient-to-br from-rose-500 via-fuchsia-500 to-violet-500 text-white p-5 rounded-2xl shadow-lg shadow-rose-200/50 flex flex-col justify-center border border-rose-300">
+          <div className="text-white/80 text-xs font-bold mb-1 uppercase">Emergency Action</div>
+          <p className="text-xs text-white/70 mb-3 leading-tight">Instantly override networks to push SMS to all active citizens.</p>
+          <button className="w-full bg-white/20 hover:bg-white/30 backdrop-blur-md py-2.5 rounded-lg font-bold text-sm flex items-center justify-center gap-2 transition cursor-pointer shadow-md border border-white/20">
             <Volume2 size={16}/> Push SMS Broadcast
           </button>
         </div>
@@ -2083,7 +1937,7 @@ function AdminDashboardTab() {
                   className="w-full bg-blue-500 rounded-t-sm hover:bg-blue-400 transition-colors" 
                   style={{ height: `${(val / 120) * 100}%` }}
                 ></div>
-                <div className="opacity-0 group-hover:opacity-100 absolute -top-8 bg-slate-900 text-white text-[10px] font-bold px-2 py-1 rounded shadow transition pointer-events-none">{val}</div>
+                <div className="opacity-0 group-hover:opacity-100 absolute -top-8 bg-gradient-to-r from-fuchsia-600 to-cyan-600 text-white text-[10px] font-bold px-2 py-1 rounded shadow transition pointer-events-none">{val}</div>
                 <span className="text-[10px] text-slate-400 mt-2">{i*2}h</span>
               </div>
             ))}
@@ -2165,46 +2019,7 @@ function MyProfileTab() {
   )
 }
 
-function EmergencyContactsTab() {
-  return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="max-w-5xl mx-auto space-y-6">
-      <div className="flex justify-between items-end mb-6">
-        <div>
-          <h2 className="text-3xl font-extrabold text-slate-900">Emergency Contacts</h2>
-          <p className="text-slate-500">People who will be notified instantly when you trigger an SOS.</p>
-        </div>
-        <button className="bg-blue-600 text-white px-4 py-2 rounded-lg font-bold flex items-center gap-2 hover:bg-blue-700 transition shadow-sm cursor-pointer"><Plus size={16}/> Add Contact</button>
-      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <button className="border-2 border-dashed border-slate-300 hover:border-blue-500 bg-slate-50 hover:bg-blue-50 rounded-2xl p-6 flex flex-col items-center justify-center text-slate-500 hover:text-blue-600 transition h-40 cursor-pointer group">
-          <div className="bg-white p-3 rounded-full mb-3 shadow-sm group-hover:scale-110 transition-transform"><Users size={24}/></div>
-          <span className="font-bold text-sm">Add Family</span>
-        </button>
-        <button className="border-2 border-dashed border-slate-300 hover:border-blue-500 bg-slate-50 hover:bg-blue-50 rounded-2xl p-6 flex flex-col items-center justify-center text-slate-500 hover:text-blue-600 transition h-40 cursor-pointer group">
-          <div className="bg-white p-3 rounded-full mb-3 shadow-sm group-hover:scale-110 transition-transform"><Stethoscope size={24}/></div>
-          <span className="font-bold text-sm">Add Doctor</span>
-        </button>
-        <button className="border-2 border-dashed border-slate-300 hover:border-blue-500 bg-slate-50 hover:bg-blue-50 rounded-2xl p-6 flex flex-col items-center justify-center text-slate-500 hover:text-blue-600 transition h-40 cursor-pointer group">
-          <div className="bg-white p-3 rounded-full mb-3 shadow-sm group-hover:scale-110 transition-transform"><Scale size={24}/></div>
-          <span className="font-bold text-sm">Add Lawyer</span>
-        </button>
-        <button className="border-2 border-dashed border-slate-300 hover:border-blue-500 bg-slate-50 hover:bg-blue-50 rounded-2xl p-6 flex flex-col items-center justify-center text-slate-500 hover:text-blue-600 transition h-40 cursor-pointer group">
-          <div className="bg-white p-3 rounded-full mb-3 shadow-sm group-hover:scale-110 transition-transform"><Home size={24}/></div>
-          <span className="font-bold text-sm">Add Neighbor</span>
-        </button>
-      </div>
-
-      <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-         <div className="p-8 text-center text-slate-500">
-           <Users size={48} className="mx-auto mb-4 opacity-20" />
-           <h3 className="text-lg font-bold text-slate-800 mb-1">No Contacts Added Yet</h3>
-           <p className="text-sm max-w-md mx-auto">Your SOS alerts currently have no trusted recipients. We highly recommend adding at least two family members.</p>
-         </div>
-      </div>
-    </motion.div>
-  )
-}
 
 function CalendarTab() {
   const [activeAction, setActiveAction] = useState<string | null>(null);
@@ -2288,11 +2103,11 @@ function CalendarTab() {
              </div>
           </div>
           
-          <div className="bg-gradient-to-br from-slate-900 to-slate-800 p-6 rounded-2xl shadow-lg border border-slate-700 text-white relative overflow-hidden">
+          <div className="bg-gradient-to-br from-fuchsia-500 via-violet-500 to-cyan-500 p-6 rounded-2xl shadow-lg shadow-fuchsia-200/50 border border-fuchsia-300 text-white relative overflow-hidden">
              <div className="absolute -right-6 -bottom-6 opacity-10"><Bell size={100}/></div>
              <h3 className="font-bold mb-2">Never miss an update</h3>
-             <p className="text-xs text-slate-300 mb-4">Sync these events directly to your personal Google or Apple Calendar.</p>
-             <button onClick={() => handleAction('Events synced to your calendar! Check Google Calendar.')} className="w-full bg-white/10 hover:bg-white/20 border border-white/20 transition rounded-lg py-2 text-sm font-bold flex items-center justify-center gap-2 backdrop-blur-sm cursor-pointer">
+             <p className="text-xs text-white/80 mb-4">Sync these events directly to your personal Google or Apple Calendar.</p>
+             <button onClick={() => handleAction('Events synced to your calendar! Check Google Calendar.')} className="w-full bg-white/20 hover:bg-white/30 border border-white/30 transition rounded-lg py-2 text-sm font-bold flex items-center justify-center gap-2 backdrop-blur-sm cursor-pointer">
                <Download size={16}/> Sync to Calendar
              </button>
           </div>
@@ -2301,3 +2116,4 @@ function CalendarTab() {
     </motion.div>
   )
 }
+
