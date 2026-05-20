@@ -1,261 +1,41 @@
-# 🏛️ GovAssist AI — Emergency Government Navigator
+## 👥 Our Team — INNOVATOR TEAM
 
-> **"Smarter Government. Stronger Citizens."**
+Meet the passionate innovators behind **GovAssist AI: Emergency Government Navigator**, built for **HACK4SOC 3.0**.
 
-An AI-powered, end-to-end emergency response & government services platform built for **HACK4SOC 3.0** Hackathon. Features a premium glassmorphism UI with pink/blue/white design system, real-time emergency routing, multi-language support, and citizen-first workflows.
-
-**Developed by: INNOVATOR TEAM**
-
----
-
-## 🖼️ Screenshots
-
-| Splash Screen | Dashboard | Mobile Menu |
-|:---:|:---:|:---:|
-| Light gradient loading | Full sidebar + content | Slide-out navigation |
-
-| AI Navigator | SOS Center | Legal Aid |
-|:---:|:---:|:---:|
-| Context-aware chat | Emergency response hub | e-FIR & rights guide |
+### 🧑‍💼 Ranjeet Kumar (Team Leader)
+- 📧 Email: rajranjeet7680@gmail.com
+- 🎓 Degree: Bachelor of Technology (B.Tech)
+- 🏛 Institution: Indian Institute of Technology Roorkee (IIT Roorkee)
+- 🔗 Hack2Skill Profile: [View Profile](https://hack2skill.com/dashboard/user_public_profile/?userId=6817753bbd3f11d6144699e1&tabIndex=about&utm_source=hack2skill&utm_medium=homepage)
 
 ---
 
-## 🚀 Quick Start
-
-```bash
-# Clone the repository
-git clone https://github.com/your-repo/govassist-ai.git
-cd govassist-ai
-
-# Install dependencies
-npm install
-
-# Run development server
-npm run dev
-
-# Build for production
-npm run build && npm start
-```
-
-Open [http://localhost:3000](http://localhost:3000) to view the application.
+### 👨‍💻 Dhanush
+- 📧 Email: dhanushs99777@gmail.com
+- 🎓 Degree: Bachelor of Technology (B.Tech)
+- 🏛 Institution: Amrita Vishwa Vidyapeetham
+- 🔗 Hack2Skill Profile: [View Profile](https://hack2skill.com/dashboard/user_public_profile/?userId=6a0c0b114f987adad8760e48&tabIndex=about&utm_source=hack2skill&utm_medium=homepage)
 
 ---
 
-## ✨ Core Features
-
-### 🤖 AI Emergency Navigator
-- Context-aware chat assistant for emergency routing
-- Intent detection: Medical, Theft, Flood, Cyber, Fire emergencies
-- Auto-suggests emergency numbers (112, 1930, 108, 181)
-- Real-time response with typing indicators
-
-### 🆘 SOS Center
-- One-tap emergency activation with countdown
-- Auto-shares location + medical profile with first responders
-- Silent panic mode for domestic violence situations
-- Live audio feed to emergency dispatch
-
-### 🗺️ Live Map
-- Real-time hospital, shelter & responder locations
-- Evacuation route mapping during active disasters
-- GPS tracking with battery-aware mode
-- Zone-based risk visualization
-
-### 🔐 Citizen Authentication
-- Sign In / Sign Out with session management
-- Aadhaar-verified identity linking
-- Guest access mode for emergencies
-- AI-generated user avatars
-
-### 🌐 Multi-Language Support
-- Full language switcher (English, हिन्दी, தமிழ், বাংলা, తెలుగు, मराठी)
-- Accessible from header on all devices
-- Instant toggle with visual confirmation
+### 🔬 Sahil Thakur
+- 📧 Email: sahilthakur2953@gmail.com
+- 🎓 Degree: Bachelor of Science (B.Sc)
+- 🏛 Institution: Jaypee University of Information Technology, Solan, Himachal Pradesh
+- 🔗 Hack2Skill Profile: [View Profile](https://hack2skill.com/dashboard/user_public_profile/?userId=67e53ed0f17eac942114cb86&tabIndex=about&utm_source=hack2skill&utm_medium=homepage)
 
 ---
 
-## 📱 Complete Platform (18+ Modules)
-
-### Primary Navigation
-| Module | Description | Status |
-|--------|-------------|--------|
-| **Welcome** | Landing page with hero carousel & quick actions | ✅ Full |
-| **Dashboard** | Stat cards, AI features, quick navigation | ✅ Full |
-| **AI Navigator** | Chat-based emergency assistant | ✅ Full |
-| **SOS Center** | Emergency activation & dispatch | ✅ Full |
-| **Live Map** | Real-time resource mapping | ✅ Full |
-
-### Government Resources
-| Module | Description | Status |
-|--------|-------------|--------|
-| **Emergency Plans** | Disaster preparedness guides | ✅ Full |
-| **Documents Vault** | Encrypted document storage | ✅ Full |
-| **Official Alerts** | Government notification feed | ✅ Full |
-| **Calendar** | Events, drills, community programs | ✅ Full |
-| **Agency Directory** | Contact database with direct dial | ✅ Full |
-| **Legal Aid** | e-FIR drafting, pro bono consult, rights guide | ✅ Full |
-| **Disaster Relief** | Compensation claims, volunteer signup, donations | ✅ Full |
-
-### Personal
-| Module | Description | Status |
-|--------|-------------|--------|
-| **My Profile** | Aadhaar-linked identity management | ✅ Full |
-| **Medical Profile** | Blood type, allergies, prescriptions | ✅ Full |
-| **Emergency Contacts** | Quick-dial trusted contacts | ✅ Full |
-
-### System
-| Module | Description | Status |
-|--------|-------------|--------|
-| **Settings** | Account, privacy, SOS config, security vault | ✅ Full |
-| **Admin Dashboard** | Analytics, active SOS tracking, response metrics | ✅ Full |
-| **Volunteer Portal** | Registered volunteer management | ✅ Full |
+### 💡 Bathula Chinmai Pavani
+- 📧 Email: bathulachinmaipavani@gmail.com
+- 🎓 Degree: Bachelor of Technology (B.Tech)
+- 🏛 Institution: Avanthi Institute of Engineering & Technology
+- 📍 Location: Andhra Pradesh, India
+- 🔗 Hack2Skill Profile: [View Profile](https://hack2skill.com/dashboard/user_public_profile/?userId=6867912176ce14837dd82506&tabIndex=about&utm_source=hack2skill&utm_medium=homepage)
 
 ---
 
-## 🎨 Design System
+## 🎯 Our Mission
+Building AI-powered emergency response solutions that connect citizens with government services instantly, making communities safer, smarter, and more resilient.
 
-### Color Palette
-| Color | Usage | Value |
-|-------|-------|-------|
-| **Blue** | Primary actions, active states | `#3b82f6` |
-| **Pink** | Accents, section labels, borders | `#ec4899` |
-| **Red** | SOS, emergency, alerts | `#ef4444` |
-| **White** | Backgrounds, cards, sidebar | `#ffffff` |
-| **Slate** | Text, borders, subtle UI | `#64748b` |
-
-### UI Components
-- **Sidebar**: White/lavender/blue gradient glass with pink accents
-- **Nav Items**: Blue-50 → Pink-50 gradient active state
-- **Buttons**: Pink → Red → Blue gradient CTAs
-- **Cards**: White with pink/blue border highlights
-- **Credit Bar**: Separate footer with INNOVATOR TEAM branding
-
-### Typography
-- **Font**: Inter (Google Fonts)
-- **Headings**: 800 weight (Extrabold)
-- **Body**: 500 weight (Medium)
-- **Labels**: 600 weight (Semibold), uppercase tracking
-
----
-
-## 🔧 Tech Stack
-
-| Technology | Version | Purpose |
-|-----------|---------|---------|
-| **Next.js** | 14.2.3 | React framework |
-| **TypeScript** | 5.x | Type safety |
-| **Tailwind CSS** | 3.4.1 | Utility-first styling |
-| **Framer Motion** | 11.2.6 | Animations & transitions |
-| **Lucide React** | 0.379.0 | Icon library |
-
----
-
-## 📦 Project Structure
-
-```
-HACK4SOC 3.0/
-├── app/
-│   ├── page.tsx           # Main dashboard with all 18 tab components
-│   ├── layout.tsx         # Root layout with meta & fonts
-│   ├── globals.css        # Global styles + glass sidebar effects
-│   ├── components.tsx     # Reusable UI components
-│   └── api/
-│       ├── logo/route.ts      # GovAssist AI logo endpoint
-│       ├── team-logo/route.ts # INNOVATOR TEAM logo endpoint
-│       └── avatar/route.ts    # User avatar (SVG gradient)
-├── public/
-├── ChatGPT Image*.png     # GovAssist AI app logo
-├── 1777526484510-*.webp   # INNOVATOR TEAM credit logo
-├── package.json
-├── tailwind.config.ts
-├── tsconfig.json
-└── README.md
-```
-
----
-
-## 🔑 Key Interactive Features
-
-### Every Button Works ✅
-- **Start Draft** → Opens e-FIR drafting flow with success toast
-- **Find Lawyer** → Shows available pro bono consultants
-- **Read Guides** → Opens citizen rights documentation
-- **File New Claim** → Initiates SDRF compensation claim
-- **Register as Volunteer** → Opens volunteer signup form
-- **Sync to Calendar** → Exports events to Google/Apple Calendar
-- **Suggest Event** → Opens community event submission
-- **Dial Agency** → Initiates phone call to government agency
-- **Sign In / Sign Out** → Full auth flow with form & guest mode
-- **Language Switch** → Real-time language toggle (6 languages)
-
-### Responsive Design
-- **Mobile**: Touch-friendly, slide-out menu, compact credit bar
-- **Tablet**: Adaptive grid layouts
-- **Desktop**: Full sidebar + collapsible mode, hover tooltips
-
----
-
-## 🚀 Deployment
-
-### Vercel (Recommended)
-```bash
-vercel deploy
-```
-
-### Docker
-```bash
-docker build -t govassist-ai .
-docker run -p 3000:3000 govassist-ai
-```
-
----
-
-## ♿ Accessibility
-
-- ✅ High contrast text (4.5:1 ratio minimum)
-- ✅ Keyboard navigation support
-- ✅ Screen reader friendly semantic HTML
-- ✅ Focus states on all interactive elements
-- ✅ ARIA labels on icon-only buttons
-
----
-
-## 🔐 Security
-
-- Government gateway encryption
-- Privacy-first data architecture
-- Aadhaar-verified identity linking
-- Auto-expiring SOS sessions
-- GDPR & IT Act compliant
-
----
-
-## 👥 Team
-
-| Role | Name |
-|------|------|
-| **Developer** | INNOVATOR TEAM |
-| **Project** | HACK4SOC 3.0 Hackathon |
-| **Year** | 2026 |
-
----
-
-## 📄 License
-
-MIT License — Free to use for educational and social impact purposes.
-
----
-
-<div align="center">
-
-**🏛️ GovAssist AI — Smarter Government. Stronger Citizens.**
-
-*Built with ❤️ by INNOVATOR TEAM for HACK4SOC 3.0*
-
-[![Status](https://img.shields.io/badge/Status-Production_Ready-brightgreen)]()
-[![Build](https://img.shields.io/badge/Build-Passing-brightgreen)]()
-[![Modules](https://img.shields.io/badge/Modules-18+-blue)]()
-[![Languages](https://img.shields.io/badge/Languages-6-pink)]()
-
-</div>
-#
+**"Smarter Government. Stronger Citizens."**
