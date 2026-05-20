@@ -59,8 +59,33 @@ export default function AccessibilityPanel({ isOpen, onClose }: { isOpen: boolea
   // Apply live effects
   useEffect(() => {
     document.documentElement.style.fontSize = `${settings.fontSize}%`;
-    return () => { document.documentElement.style.fontSize = ""; };
-  }, [settings.fontSize]);
+
+    // Toggle high contrast class
+    if (settings.highContrast) {
+      document.documentElement.classList.add("high-contrast");
+    } else {
+      document.documentElement.classList.remove("high-contrast");
+    }
+
+    // Toggle dark mode class
+    if (settings.darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+
+    // Toggle large pointer class
+    if (settings.largePointer) {
+      document.documentElement.classList.add("large-pointer");
+    } else {
+      document.documentElement.classList.remove("large-pointer");
+    }
+
+    return () => {
+      document.documentElement.style.fontSize = "";
+      document.documentElement.classList.remove("high-contrast", "dark", "large-pointer");
+    };
+  }, [settings.fontSize, settings.highContrast, settings.darkMode, settings.largePointer]);
 
   if (!isOpen) return null;
 
@@ -234,18 +259,27 @@ function ToggleCard({ icon, title, desc, enabled, onToggle, color, fullWidth }: 
     emerald: "border-emerald-200 bg-emerald-50",
   };
 
+  const textColors: Record<string, string> = {
+    amber: "text-amber-600",
+    slate: "text-slate-600",
+    purple: "text-purple-600",
+    blue: "text-blue-600",
+    indigo: "text-indigo-600",
+    emerald: "text-emerald-600",
+  };
+
   return (
     <div className={`${fullWidth ? "" : ""} p-4 rounded-2xl border-2 transition-all ${enabled ? colors[color] || colors.blue : "border-slate-200 bg-white"}`}>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className={`${enabled ? `text-${color}-600` : "text-slate-400"}`}>{icon}</div>
+          <div className={`${enabled ? textColors[color] || "text-blue-600" : "text-slate-400"}`}>{icon}</div>
           <div>
             <div className="font-bold text-slate-800 text-sm">{title}</div>
             <div className="text-[11px] text-slate-500">{desc}</div>
           </div>
         </div>
         <div onClick={onToggle} className={`w-11 h-6 rounded-full relative cursor-pointer transition-colors ${enabled ? "bg-indigo-600" : "bg-slate-300"}`}>
-          <div className={`absolute top-1 w-4 h-4 rounded-full bg-white shadow transition-all ${enabled ? "right-1" : "left-1"}`} />
+          <div className={`absolute top-1 left-1 w-4 h-4 rounded-full bg-white shadow transition-transform duration-200 ${enabled ? "transform translate-x-5" : ""}`} />
         </div>
       </div>
     </div>

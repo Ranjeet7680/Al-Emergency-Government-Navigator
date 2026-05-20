@@ -177,7 +177,7 @@ body {
   }
   
   /* Touch-friendly sizing */
-  button, a, .cursor-pointer {
+  button:not(.no-min-size), a:not(.no-min-size) {
     min-height: 44px;
     min-width: 44px;
   }
