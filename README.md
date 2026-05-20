@@ -1,41 +1,178 @@
-## 👥 Our Team — INNOVATOR TEAM
+# 🏛️ GovAssist AI — Emergency Government Navigator
 
-Meet the passionate innovators behind **GovAssist AI: Emergency Government Navigator**, built for **HACK4SOC 3.0**.
+> **Smarter Government. Stronger Citizens.**
 
-### 🧑‍💼 Ranjeet Kumar (Team Leader)
-- 📧 Email: rajranjeet7680@gmail.com
-- 🎓 Degree: Bachelor of Technology (B.Tech)
-- 🏛 Institution: Indian Institute of Technology Roorkee (IIT Roorkee)
-- 🔗 Hack2Skill Profile: [View Profile](https://hack2skill.com/dashboard/user_public_profile/?userId=6817753bbd3f11d6144699e1&tabIndex=about&utm_source=hack2skill&utm_medium=homepage)
+An AI-powered emergency response and government assistance platform designed to help citizens access emergency services, legal aid, disaster support, and official government resources instantly.
+
+Built for **HACK4SOC 3.0 Hackathon** by **INNOVATOR TEAM**.
 
 ---
 
-### 👨‍💻 Dhanush
-- 📧 Email: dhanushs99777@gmail.com
-- 🎓 Degree: Bachelor of Technology (B.Tech)
-- 🏛 Institution: Amrita Vishwa Vidyapeetham
-- 🔗 Hack2Skill Profile: [View Profile](https://hack2skill.com/dashboard/user_public_profile/?userId=6a0c0b114f987adad8760e48&tabIndex=about&utm_source=hack2skill&utm_medium=homepage)
+## 🌟 Overview
+
+GovAssist AI is a citizen-first emergency assistance platform that combines artificial intelligence, live emergency navigation, government resource access, and safety-focused digital services into one smart platform.
+
+The project addresses real-world emergency situations such as:
+
+- Medical emergencies
+- Fire incidents
+- Theft & crime reporting
+- Cyber fraud complaints
+- Women safety emergencies
+- Disaster relief coordination
+- Legal emergency assistance
+- Government scheme access
+
+This platform helps reduce response time and improve citizen access to critical services.
 
 ---
 
-### 🔬 Sahil Thakur
-- 📧 Email: sahilthakur2953@gmail.com
-- 🎓 Degree: Bachelor of Science (B.Sc)
-- 🏛 Institution: Jaypee University of Information Technology, Solan, Himachal Pradesh
-- 🔗 Hack2Skill Profile: [View Profile](https://hack2skill.com/dashboard/user_public_profile/?userId=67e53ed0f17eac942114cb86&tabIndex=about&utm_source=hack2skill&utm_medium=homepage)
+## 🚀 Live Demo
+
+🌐 **Live Website:**  
+https://al-emergency-government-navigator.vercel.app/
+
+📂 **GitHub Repository:**  
+https://github.com/Ranjeet7680/Al-Emergency-Government-Navigator
+
+🎥 **Demo Video:**  
+(Add your video link here)
 
 ---
 
-### 💡 Bathula Chinmai Pavani
-- 📧 Email: bathulachinmaipavani@gmail.com
-- 🎓 Degree: Bachelor of Technology (B.Tech)
-- 🏛 Institution: Avanthi Institute of Engineering & Technology
-- 📍 Location: Andhra Pradesh, India
-- 🔗 Hack2Skill Profile: [View Profile](https://hack2skill.com/dashboard/user_public_profile/?userId=6867912176ce14837dd82506&tabIndex=about&utm_source=hack2skill&utm_medium=homepage)
+## ✨ Key Features
+
+### 🤖 AI Emergency Navigator
+AI-powered assistant for emergency guidance.
+
+Features:
+- Smart emergency detection
+- Instant help suggestions
+- Emergency routing guidance
+- Context-aware assistance
+- Real-time interaction
 
 ---
 
-## 🎯 Our Mission
-Building AI-powered emergency response solutions that connect citizens with government services instantly, making communities safer, smarter, and more resilient.
+### 🆘 SOS Emergency Center
+One-click emergency activation.
 
-**"Smarter Government. Stronger Citizens."**
+Includes:
+- Panic button
+- Emergency countdown
+- Quick emergency contact access
+- Fast citizen response interface
+- Women safety mode
+
+---
+
+### 🗺️ Live Emergency Map
+Real-time emergency location awareness.
+
+Features:
+- Nearby hospitals
+- Police stations
+- Disaster shelters
+- Safe routes
+- Navigation support
+
+---
+
+### 📑 Legal Aid Support
+Government and citizen legal help.
+
+Includes:
+- e-FIR assistance
+- Rights awareness
+- Legal guidance
+- Complaint support
+
+---
+
+### 🌐 Multi-Language Support
+Accessible to diverse citizens.
+
+Supported languages:
+- English
+- हिन्दी
+- বাংলা
+- தமிழ்
+- తెలుగు
+- मराठी
+
+---
+
+### 📁 Government Resource Access
+Instant access to official services.
+
+Modules:
+- Government alerts
+- Emergency documents
+- Relief schemes
+- Citizen services
+- Official contacts
+
+---
+
+### 👤 User Profile Management
+Personal safety data management.
+
+Includes:
+- Medical information
+- Emergency contacts
+- Secure profile
+- Citizen preferences
+
+---
+
+### 🎯 Volunteer Support
+Community emergency participation.
+
+Features:
+- Volunteer registration
+- Event coordination
+- Disaster response participation
+
+---
+
+## 🏗 Tech Stack
+
+### Frontend
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+
+### UI/UX
+- Framer Motion
+- Lucide React
+- Glassmorphism Design
+
+### Deployment
+- Vercel
+
+### Development Tools
+- GitHub
+- VS Code
+
+---
+
+## 📂 Project Structure
+
+```bash
+GovAssist-AI/
+│
+├── app/
+│   ├── page.tsx
+│   ├── layout.tsx
+│   ├── globals.css
+│   └── api/
+│
+├── public/
+│
+├── components/
+│
+├── package.json
+├── tailwind.config.ts
+├── tsconfig.json
+└── README.md
