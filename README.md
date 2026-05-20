@@ -27,16 +27,21 @@ This platform helps reduce response time and improve citizen access to critical 
 
 ---
 
-## 🚀 Live Demo
 
-🌐 **Live Website:**  
+
+## 🚀 Project Resources
+
+🌐 **Live Demo:**  
 https://al-emergency-government-navigator.vercel.app/
 
 📂 **GitHub Repository:**  
 https://github.com/Ranjeet7680/Al-Emergency-Government-Navigator
 
+📊 **Project Presentation (PPT):**  
+https://canva.link/3monmfcilv379tr
+
 🎥 **Demo Video:**  
-(Add your video link here)
+(Add Demo Video Link Here)
 
 ---
 
